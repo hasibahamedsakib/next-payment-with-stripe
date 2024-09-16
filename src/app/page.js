@@ -1,7 +1,7 @@
-import Blogs from "@/components/Blogs";
+// import Blogs from "@/components/Blogs";
 import CarTypes from "@/components/CarTypes";
 import Faq from "@/components/Faq";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import HomeAbout from "@/components/HomeAbout";
 import Homecountries from "@/components/Homecountries";
 import HomeHero from "@/components/HomeHero";
@@ -18,9 +18,9 @@ export default function Home() {
       <CarTypes />
       <Homecountries />
       <HomeListCar />
-      <Blogs />
+      {/* <Blogs /> */}
       <Faq />
-      <Footer />
+      
     </div>
   );
 }

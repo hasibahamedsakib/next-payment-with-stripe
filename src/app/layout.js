@@ -1,4 +1,5 @@
 // import localFont from "next/font/local";
+import Footer from "@/components/Footer";
 import "./globals.css";
 import Header from "@/components/Header";
 import { Sunflower } from 'next/font/google';
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       >
       <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

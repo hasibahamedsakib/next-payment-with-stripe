@@ -18,36 +18,36 @@ function Footer() {
         <div className="  ">
         <div>
           <Image src={Logo} className=" w-[10rem] object-cover h-full " />
-          <h3 className=" mt-5 mb-2 text-[1.5rem] ">About Us</h3>
-          <p className=" text-sm md:text-base text-[#000]  ">Move Around makes sharing cars and trucks simple through its proprietary cloud and in-car Connect® technology. Move Around on-demand technology enables a contactless experience — no waiting in line at a car rental facility, manually completing paperwork, or meeting anyone to collect or drop off car keys.</p>
+          <h3 className=" mt-5 mb-2 text-[1.5rem] ">Om oss</h3>
+          <p className=" text-sm md:text-base text-[#000]  ">Move Around gjør det enkelt å dele biler og lastebiler gjennom sin egenutviklede sky- og in-car Connect®-teknologi. Move Arounds etterspørsels-teknologi muliggjør en kontaktfri opplevelse — ingen venting i kø på en bilutleiefasilitet, manuell utfylling av papirarbeid, eller møte noen for å hente eller levere bilnøkler.</p>
         </div>
         </div>
         
         <div className=" flex flex-col items-end sm:items-center  gap-3 text-[#000] ">
           <div className=" text-left flex flex-col gap-3  ">
-          <h3 className=" mb-5 font-semibold text-xl ">Learn more</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">How does it work?</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">A trusted service</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Move Around app</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Contact</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Blog</h3>
+          <h3 className=" mb-5 font-semibold text-xl ">Lær mer</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Hvordan fungerer det?</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">En pålitelig tjeneste</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Move Around-appen</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Kontakt</h3>
+          {/* <h3 className=" hover:text-green-500 cursor-pointer ">Blog</h3> */}
           </div>
         </div>
 
         <div className=" flex flex-col  sm:mt-0 mt-5 items-center gap-3 text-[#000] ">
           <div className=" text-left flex flex-col gap-3 ">
-          <h3 className=" mb-5 font-semibold text-xl  ">Resources</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Owner resources</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Pros</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Help center</h3>
+          <h3 className=" mb-5 font-semibold text-xl  ">Ressurser</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Eierressurser</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Fordeler</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Hjelpesenter</h3>
           </div>
         </div>
         
         <div className=" flex flex-col items-center md:items-end  sm:mt-0 mt-5 gap-3 text-[#000] ">
           <div className=" text-left flex flex-col gap-3 ">
-          <h3 className=" mb-5 font-semibold text-xl ">Partners</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Partner with us</h3>
-          <h3 className=" hover:text-[#0372BF] cursor-pointer ">Drive with Uber</h3>
+          <h3 className=" mb-5 font-semibold text-xl ">Partnere</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Bli partner med oss</h3>
+          <h3 className=" hover:text-green-500 cursor-pointer ">Kjør med Uber</h3>
           </div>
         </div>
         </div>
@@ -64,7 +64,7 @@ function Footer() {
       </div>
       <div className=" bg-[#fff] py-4  text-[#000] text-sm text-center border-t border-[#9b9b9b] ">
       
-      <p className=" ">Copyright 2024 Move Around  |  All rights reserved.</p>
+      <p className=" ">© 2024 Move Around | Alle rettigheter reservert.</p>
           
       </div>
     </div>

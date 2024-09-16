@@ -6,24 +6,24 @@ const Faq = () => {
   const [isOpen, setIsOpen] = useState(null);
   const dataArr = [
     {
-      title: "Move Around car rental",
+      title: "Move Around bilutleie",
       description:
-        'Rent the perfect vehicle with Move Around car rental services There are a thousand reasons why you may need a rental car. Maybe you\'re moving and need a cargo van to move your furniture across town. Perhaps you\'re going on a romantic getaway with your partner and want to rent a convertible to cruise around in. Or maybe you\'re going on a business trip and need a luxury rental car to impress your clients! No matter what your needs are, Move Around is the perfect car rental option.',
+        'Lei det perfekte kjøretøyet med Move Around bilutleietjenester Det finnes tusen grunner til at du kan trenge en leiebil. Kanskje du skal flytte og trenger en varebil for å flytte møblene dine til den andre siden av byen. Kanskje du skal på en romantisk ferie med partneren din og vil leie en cabriolet for å cruise rundt i. Eller kanskje du skal på en forretningsreise og trenger en luksusleiebil for å imponere kundene dine! Uansett hvilke behov du har, er Move Around det perfekte bilutleievalget.',
     },
     {
-      title: "Why you should choose Move Around car rental",
+      title: "Hvorfor du bør velge Move Around bilutleie",
       description:
-        "Move Around car sharing is an environmentally friendly, convenient, and affordable alternative to traditional car rental. When you rent a car with Move Around, you\'re actively choosing to share an individual owner\'s car when they wouldn\'t be driving it anyway. That helps keep new cars off the road, giving the environment a tiny break it desperately needs.Move Around cars are conveniently located across communities, at airports, and in cities around the world. That means car-sharing guests benefit from having affordable and convenient access to nearby rental cars. But there\'s more! Getaround car rental is super flexible. You can rent a car by the hour or by the day. And, if your plans change, no big deal! You can cancel within 1 hour of booking or more than 24 hours before the start of your trip for free.",
+        "Move Around bilutleie er et miljøvennlig, praktisk og rimelig alternativ til tradisjonell bilutleie. Når du leier en bil med Move Around, velger du aktivt å dele en individuell eieres bil når de uansett ikke ville kjørt den. Dette bidrar til å holde nye biler borte fra veiene, og gir miljøet en liten pause det desperat trenger. Move Around-biler er praktisk plassert i lokalsamfunn, på flyplasser og i byer over hele verden. Det betyr at bil-deling gjester drar nytte av å ha rimelig og praktisk tilgang til nærliggende leiebiler. Men det er mer! Getaround bilutleie er superfleksibel. Du kan leie en bil per time eller per dag. Og, hvis planene dine endres, ingen stor sak! Du kan avbestille innen 1 time etter bestilling eller mer enn 24 timer før starten av turen din, gratis.",
     },
     {
-      title: "How does Move Around car rental work?",
+      title: "Hvordan fungerer Move Around bilutleie?",
       description:
-        "Renting a car with Getaround is as easy as one, two, three.1) Download the free Move Around app to your smartphone. Search for the vehicle you\'d like to rent based on location and duration (by the hour or day…), and book the vehicle that best meets your needs.2) Start driving! The Getaround app turns your smartphone into a car key. You can unlock the car directly from the app, meaning you have full flexibility to get the car any time after your rental pickup time.The convenience of a Move Around rental car can\'t be beat. Why not give it a shot?",
+        "Å leie en bil med Getaround er like enkelt som én, to, tre. 1) Last ned den gratis Move Around-appen til smarttelefonen din. Søk etter kjøretøyet du ønsker å leie basert på plassering og varighet (per time eller dag…), og bestill det kjøretøyet som best møter dine behov. 2) Begynn å kjøre! Getaround-appen gjør smarttelefonen din til en bilnøkkel. Du kan låse opp bilen direkte fra appen, noe som gir deg full fleksibilitet til å hente bilen når som helst etter leieoppstartstiden.",
     },
     {
-      title: "Types of cars you can rent with Move Around",
+      title: "Typer biler du kan leie med Move Around",
       description:
-        "Move Around offers a huge array of fleet styles including trucks, vans, cars, convertibles, SUVs, and so much more. The variety of sizes, styles, colors, models, and makes is as large as the community or area where you\'re renting a car. When you search for a car to book on the Move Around app or website, you can filter by your needs.In our category filter, you can choose the type of vehicle you need: SUV/Jeep? Coupe/Sedan? Minivan? Pickup truck? The car rental options are endless. In our class filter, you can choose between economy, luxury, and performance. And guess what? You can even filter by transmission (automatic or manual) and by drivetrain (all-wheel drive, anyone?). But it doesn\'t end there! You can even filter by special features. If you\'re going on a ski trip and need a roof rack, you can search specifically for that. Pet-friendly cars, cars with bike racks, and cars with Bluetooth… You can request whatever you need from your Move Around rental car.Whether you\'re going on a road trip with friends or taking a weekend getaway, Move Around car rental meets all your vehicle rental needs.",
+        "Move Around tilbyr et stort utvalg av kjøretøytyper, inkludert lastebiler, varebiler, biler, cabrioleter, SUV-er og mye mer. Variasjonen av størrelser, stiler, farger, modeller og merker er like stor som fellesskapet eller området der du leier en bil. Når du søker etter en bil å bestille på Move Around-appen eller nettsiden, kan du filtrere etter dine behov. I vårt kategorifilter kan du velge typen kjøretøy du trenger: SUV/Jeep? Coupé/Sedan? Minivan? Pickup truck? Bilutleiealternativene er uendelige. I vårt klassefilter kan du velge mellom økonomi, luksus og ytelse. Og gjett hva? Du kan til og med filtrere etter girkasse (automatisk eller manuell) og drivlinje (firehjulstrekk, kanskje?). Men det stopper ikke der! Du kan til og med filtrere etter spesialfunksjoner. Hvis du skal på skitur og trenger takstativ, kan du søke spesifikt etter det. Kjæledyrvennlige biler, biler med sykkelstativ og biler med Bluetooth… Du kan be om hva du trenger fra din Move Around leiebil. Enten du skal på biltur med venner eller ta en helgetur, møter Move Around bilutleie alle dine bilutleiebehov.",
     },
   ];
   const toggle = (idx) => {
@@ -33,7 +33,7 @@ const Faq = () => {
   return (
     <div className=" max-w-[1300px] mx-auto px-3 ">
       <div className=" text-center text-[2rem] sm:text-[2.5rem] lg:text-[3rem] font-semibold w-full pb-10  ">
-        <h3>Frequently Asked Questions</h3>
+        <h3>Ofte stilte spørsmål</h3>
       </div>
 
       <div className="mx-auto w-full rounded-lg">
