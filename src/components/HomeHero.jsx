@@ -24,7 +24,7 @@ const HomeHero = () => {
         </div>
         <div className=' w-full md:flex-1 relative md:order-2 order-1 md:pt-0 pt-10 '>
             <div className=' md:absolute right-0 xl:right-[-100px] flex items-center justify-center h-full sm:w-[25rem] md:w-[30rem] mx-auto top-0 '>
-            <Image src={HeroImg} alt='Hero Img' className=' w-full   object-cover ' />
+            <Image src={HeroImg} alt='Hero Img' placeholder='blur' priority={true} className=' w-full   object-cover ' />
             </div>
         </div>
     </div>

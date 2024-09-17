@@ -16,14 +16,14 @@ const HomeAbout = () => {
       <div className='  flex  w-full md:flex-row flex-col gap-10  md:gap-3 lg:gap-[3%] '>
       <div className=' flex-1 flex gap-2 sm:gap-4 '>
         <div className=' flex-1 '>
-          <Image src={HomeAboutImg2} className=' w-full h-[20rem] sm:h-full object-cover  rounded-lg ' />
+          <Image src={HomeAboutImg2} alt='Home About Image'  className=' w-full h-[20rem] sm:h-full object-cover  rounded-lg ' />
         </div>
         <div className=' flex-1 flex flex-col gap-2 sm:gap-4 '>
           <div className=' flex-1 '>
-            <Image src={HomeAboutImg1} className=' w-full h-full object-cover object-top rounded-lg ' />
+            <Image src={HomeAboutImg1} alt='Home About Image'  className=' w-full h-full object-cover object-top rounded-lg ' />
           </div>
           <div className=' flex-1 '>
-            <Image src={HomeAboutImg3} className=' w-full h-full object-cover object-top rounded-lg ' />
+            <Image src={HomeAboutImg3} alt='Home About Image'  className=' w-full h-full object-cover object-top rounded-lg ' />
           </div>
           
         </div>

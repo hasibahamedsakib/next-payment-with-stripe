@@ -17,7 +17,7 @@ const CarTypes = () => {
       <div className=" text-center text-[2rem] sm:text-[2.5rem] lg:text-[3rem] font-semibold w-full pb-10  ">
         <h3>Biler for dine behov</h3>
       </div>
-      <div className=" grid grid-cols-4  gap-3 ">
+      <div className=" grid grid-cols-2 md:grid-cols-4 gap-1  md:gap-3 ">
         {/* <div
           onMouseOver={() => setCardHover1(true)}
           onMouseLeave={() => setCardHover1(false)}
@@ -91,26 +91,26 @@ const CarTypes = () => {
           />
         </div> */}
 
-            <div className=" bg-green-500 p-2 text-[#fff] text-[1.5rem] rounded-md  w-full ">
-                <Image src={CarImg1} alt="Car Type Img" className=" w-full h-[12rem] object-fill rounded-md " />
+            <div className=" bg-green-500 p-2 text-[rgb(255,255,255)] text-[1.5rem] rounded-md  w-full ">
+                <Image src={CarImg1} alt="Car Type Img" placeholder="blur" className=" w-full sm:h-[12rem] object-fill rounded-md " />
                 <div className=" w-full flex bg-green-500 items-center justify-center ">
                     <h3 className=" pt-2 ">Pickup</h3>
                 </div>
             </div>
             <div className=" bg-green-500 p-2 text-[#fff] text-[1.5rem] rounded-md  w-full ">
-                <Image src={CarImg2} alt="Car Type Img" className=" w-full h-[12rem] object-fill rounded-md " />
+                <Image src={CarImg2} alt="Car Type Img" placeholder="blur" className=" w-full sm:h-[12rem] object-fill rounded-md " />
                 <div className=" w-full flex bg-green-500 items-center justify-center ">
                     <h3 className=" pt-2 ">Kommersiell</h3>
                 </div>
             </div>
             <div className=" bg-green-500 p-2 text-[#fff] text-[1.5rem] rounded-md  w-full ">
-                <Image src={CarImg3} alt="Car Type Img" className=" w-full h-[12rem] object-fill rounded-md " />
+                <Image src={CarImg3} alt="Car Type Img" placeholder="blur" className=" w-full sm:h-[12rem] object-fill rounded-md " />
                 <div className=" w-full flex bg-green-500 items-center justify-center ">
                     <h3 className=" pt-2 ">Familiebil</h3>
                 </div>
             </div>
             <div className=" bg-green-500 p-2 text-[#fff] text-[1.5rem] rounded-md  w-full ">
-                <Image src={CarImg4} alt="Car Type Img" className=" w-full h-[12rem] object-fill rounded-md " />
+                <Image src={CarImg4} alt="Car Type Img" placeholder="blur" className=" w-full sm:h-[12rem] object-fill rounded-md " />
                 <div className=" w-full flex bg-green-500 items-center justify-center ">
                     <h3 className=" pt-2 ">SUV</h3>
                 </div>

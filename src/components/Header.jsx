@@ -15,7 +15,7 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false)
 
   const pathname = usePathname();
-  console.log(pathname);
+  // console.log(pathname);
 
   return (
     <div className=" max-w-[1250px] mx-auto flex items-center justify-between px-3 relative z-50  py-2 ">
@@ -23,6 +23,7 @@ const Header = () => {
         <Image
           alt="Logo"
           priority={true}
+          placeholder="blur"
           src={Logo}
           className=" w-[10rem] h-full object-cover "
         />
@@ -48,12 +49,12 @@ const Header = () => {
         </Link>
       </div>
       <div className=" hidden md:flex items-center gap-2 lg:gap-5 ">
-        <button className=" bg-transparent px-5 py-2 font-semibold border border-green-600 hover:bg-green-500 transition-colors duration-300 ease-in-out rounded-md shadow-md ">
+        <Link href={'/auth/signin'} className=" bg-transparent px-5 py-2 font-semibold border text-[#000] hover:text-[#fff] border-green-600 hover:bg-green-500 transition-colors duration-300 ease-in-out rounded-md shadow-md ">
         Logg inn
-        </button>
-        <button className=" px-5 py-2 font-semibold border hover:bg-transparent hover:border-green-500  bg-green-500 rounded-md  transition-colors duration-300 ease-in-out">
+        </Link>
+        <Link href={'/auth/signup'} className=" px-5 py-2 font-semibold border hover:bg-transparent text-[#fff] hover:text-[#000] border-green-500  bg-green-500 rounded-md  transition-colors duration-300 ease-in-out">
         Registrer deg
-        </button>
+        </Link>
       </div>
       <div className=" md:hidden block text-[1.5rem] pr-3 transition-all duration-300 ease-in-out ">
         {
