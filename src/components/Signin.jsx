@@ -46,7 +46,7 @@ const Signin = () => {
             <div className=' mt-6 '>
                 <button className=' bg-green-500 w-full text-[1.4rem] py-2 rounded-md text-[#fff] '>Sign In</button>
             </div>
-            <p className=' text-center font-medium mt-5 '>Don't have a Move Around account ? <Link href={'/auth/signup'} className=' underline pb-2 text-green-500 '>Sign Up</Link></p>
+            <p className=' text-center font-medium mt-5 '>Don&apos;t have a Move Around account ? <Link href={'/auth/signup'} className=' underline pb-2 text-green-500 '>Sign Up</Link></p>
         </div>
     </div>
   )

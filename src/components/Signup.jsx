@@ -91,7 +91,7 @@ const Signup = () => {
           </button>
         </div>
         <p className=" text-center font-medium mt-5 ">
-          Don't have a Move Around account ?{" "}
+          Don&apos;t have a Move Around account ?{" "}
           <Link
             href={"/auth/signin"}
             className=" underline pb-2 text-green-500 "

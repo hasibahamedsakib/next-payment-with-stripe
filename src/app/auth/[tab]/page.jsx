@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import LoginImg from '@/public/images/LoginImg.webp'
 
-const page = ({params}) => {
+const Page = ({params}) => {
 
   const router = useRouter();
   const { tab } = params;
@@ -63,4 +63,4 @@ const page = ({params}) => {
   )
 }
 
-export default page
+export default Page
