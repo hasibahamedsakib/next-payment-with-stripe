@@ -17,7 +17,7 @@ function Footer() {
         <div className="  grid grid-cols-2 sm:grid-cols-4 gap-3 ">
         <div className="  ">
         <div>
-          <Image src={Logo} alt="Footer Logo" placeholder="blur" className=" w-[10rem] object-cover h-full " />
+          <Image src={Logo} alt="Footer Logo" className=" w-[10rem] object-cover h-full " />
           <h3 className=" mt-5 mb-2 text-[1.5rem] ">Om oss</h3>
           <p className=" text-sm md:text-base text-[#000]  ">Move Around gjør det enkelt å dele biler og lastebiler gjennom sin egenutviklede sky- og in-car Connect®-teknologi. Move Arounds etterspørsels-teknologi muliggjør en kontaktfri opplevelse — ingen venting i kø på en bilutleiefasilitet, manuell utfylling av papirarbeid, eller møte noen for å hente eller levere bilnøkler.</p>
         </div>

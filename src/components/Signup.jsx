@@ -38,10 +38,10 @@ const Signup = () => {
           <div className=" relative ">
             <input
               type="text"
-              className="  outline-none bg-green-500/10 w-full py-2 rounded-md pl-8 pr-3 border md:placeholder:text-[1.3rem] placeholder:text-base "
+              className="  outline-none bg-green-500/10 w-full py-2 rounded-md pl-5 md:pl-8 md:pr-3 border md:placeholder:text-[1.3rem] placeholder:text-base "
               placeholder="Enter your firstname"
             />
-            <FaUser className=" text-[.9rem] md:text-[1.1rem] absolute top-0 h-full flex items-center text-gray-600 left-2 " />
+            <FaUser className=" text-[.9rem] md:text-[1.1rem] absolute top-0 h-full flex items-center text-gray-600 left-1 md:left-2 " />
           </div>
         </div>
         <div className=" flex-1 flex flex-col w-full  text-[1.2rem] md:text-[1.3rem]  ">
@@ -51,10 +51,10 @@ const Signup = () => {
           <div className=" relative ">
             <input
               type="text"
-              className="  outline-none bg-green-500/10 w-full py-2 rounded-md pl-8 pr-3 border md:placeholder:text-[1.3rem] placeholder:text-base "
+              className="  outline-none bg-green-500/10 w-full py-2 rounded-md pl-5 md:pl-8 md:pr-3 border md:placeholder:text-[1.3rem] placeholder:text-base "
               placeholder="Enter your lastname"
             />
-            <FaUser className=" text-[.9rem] md:text-[1.1rem] absolute top-0 h-full flex items-center text-gray-600 left-2 " />
+            <FaUser className=" text-[.9rem] md:text-[1.1rem] absolute top-0 h-full flex items-center text-gray-600 left-1 md:left-2 " />
           </div>
         </div>
         </div>
