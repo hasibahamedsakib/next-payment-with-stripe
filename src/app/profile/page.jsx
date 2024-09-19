@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
 
   const [userData, setUserData] = useState(null)
   useEffect(()=> {
@@ -85,4 +85,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
