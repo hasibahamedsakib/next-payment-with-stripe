@@ -1,21 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "@/public/images/Logo.webp";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { RxCross2 } from "react-icons/rx";
+import axios from "axios";
+import Profiles from "./Profiles";
+import { useSession } from "next-auth/react";
 
 
 
-const Header = () => {
+const Header = ({user, userData}) => {
  
     const [menuOpen, setMenuOpen] = useState(false)
+    // const [userData, setUserData] = useState(null)
 
   const pathname = usePathname();
+  // const { data: session } = useSession()
+  // console.log(`session: ${session}`);
+
   // console.log(pathname);
+  // console.log(data);
+
+  // useEffect(()=>{
+
+  //   (async function() {
+  //     const res = await axios.get('api/user/details');
+  //   const data = res.data;
+  //   if(data.success){
+  //     setUserData(data.data)
+  //   }
+  //   console.log(data);
+  //   })()
+
+  // },[])
+  // console.log(userData);
+  
+  
 
   return (
     <div className=" max-w-[1250px] mx-auto flex items-center justify-between px-3 relative z-50  py-2 ">
@@ -47,19 +71,30 @@ const Header = () => {
           Lei ut bilen din
         </Link>
       </div>
-      <div className=" hidden md:flex items-center gap-2 lg:gap-5 ">
-        <Link href={'/auth/signin'} className=" bg-transparent px-5 py-2 font-semibold border text-[#000] hover:text-[#fff] border-green-600 hover:bg-green-500 transition-colors duration-300 ease-in-out rounded-md shadow-md ">
+      
+        <div className=" flex items-center gap-5 ">
+        <div className=" md:hidden block text-[1.5rem] pr-3 transition-all duration-300 ease-in-out ">
+        {
+            menuOpen ? <RxCross2 onClick={()=>setMenuOpen(false)} /> : <HiMiniBars3 onClick={()=>setMenuOpen(true)} />
+        }
+      </div>
+        {
+          user ? <div className=" ">
+            <Profiles img={userData?.profileImg} />
+          </div> : <>
+          <div className=" hidden md:flex items-center gap-2 lg:gap-5 ">
+          <Link href={'/auth/signin'} className=" bg-transparent px-5 py-2 font-semibold border text-[#000] hover:text-[#fff] border-green-600 hover:bg-green-500 transition-colors duration-300 ease-in-out rounded-md shadow-md ">
         Logg inn
         </Link>
         <Link href={'/auth/signup'} className=" px-5 py-2 font-semibold border hover:bg-transparent text-[#fff] hover:text-[#000] border-green-500  bg-green-500 rounded-md  transition-colors duration-300 ease-in-out">
         Registrer deg
         </Link>
-      </div>
-      <div className=" md:hidden block text-[1.5rem] pr-3 transition-all duration-300 ease-in-out ">
-        {
-            menuOpen ? <RxCross2 onClick={()=>setMenuOpen(false)} /> : <HiMiniBars3 onClick={()=>setMenuOpen(true)} />
+        </div>
+          </>
         }
-      </div>
+      
+      
+        </div>
 
 
         <div className={` md:hidden flex flex-col absolute top-full left-0 w-full min-h-[100vh] z-40  bg-black/60 ${menuOpen ? 'menuOpen' : 'nMenuOpen'} transition-all duration-500 ease-in-out `}>
@@ -100,7 +135,9 @@ const Header = () => {
         >
           Lei ut bilen din
         </Link>
-        <div className=" flex items-center gap-7 text-base md:text-xl px-5 py-2 mt-10 ">
+        {
+          !user && 
+          <div className=" flex items-center gap-7 text-base md:text-xl px-5 py-2 mt-10 ">
         <Link onClick={()=>setMenuOpen(false)} href={'/auth/signin'} className=" bg-transparent px-10 py-2 font-semibold border border-green-600 hover:bg-green-500 transition-colors duration-300 ease-in-out rounded-md shadow-md ">
         Logg inn
         </Link>
@@ -108,6 +145,7 @@ const Header = () => {
         Registrer deg
         </Link>
       </div>
+        }
       </div>
         </div>
 
@@ -117,3 +155,6 @@ const Header = () => {
 };
 
 export default Header;
+
+
+

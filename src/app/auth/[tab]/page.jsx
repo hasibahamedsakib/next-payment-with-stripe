@@ -24,7 +24,7 @@ const Page = ({params}) => {
     <div className=' max-w-[1250px] mx-auto flex pt-10 '>
 
 <div className=" flex-1 flex items-center h-full justify-center">
-      <div className="w-full p-6 bg-white h-full rounded-md shadow-md">
+      <div className="w-full md:px-6 py-6 bg-white h-full rounded-md shadow-md">
         <div className="flex px-[5%] justify-center mb-6  ">
           <button
             className={`text-[1.4rem] border-b-4 flex-1 w-full py-3 transition-colors duration-300 ease-in-out ${
