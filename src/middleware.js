@@ -30,6 +30,7 @@ export const config = {
     '/auth/signup',
     '/auth/signin',
     // '/verifyemail',
-    '/profile'
+    '/profile',
+    '/dashboard/:path*'
   ]
 }

@@ -16,6 +16,14 @@
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 
 }
+.selectOpen{
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+
+}
+.selectClose{
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+
+}
 
 .nCardTypeHover1{
   clip-path: polygon(100% 0, 100% 0, 0 100%, 0 100%);
