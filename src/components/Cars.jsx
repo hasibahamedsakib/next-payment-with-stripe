@@ -11,7 +11,7 @@ const Cars = () => {
         </div>
         <div>
             <h3 className=' text-[1.4rem] font-semibold '>No booking requests</h3>
-            <p className=' font-light '>You don't have any requests right now. Why not jazz up your listing?</p>
+            <p className=' font-light '>You don&apos;t have any requests right now. Why not jazz up your listing?</p>
         </div>
         <div className=' mt-5 '>
             <button className=' px-6 py-1 rounded-md border border-green-500 '>Manage Listings</button>
