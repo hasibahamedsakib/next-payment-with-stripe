@@ -15,7 +15,7 @@ const Requests = () => {
             <p className=' font-light '>You don&apos;t have any requests right now. Why not jazz up your listing?</p>
         </div>
         <div className=' mt-5 '>
-            <button className=' px-6 py-1 rounded-md border border-green-500 '>Manage Listings</button>
+            <button className=' px-12 py-2 text-xl rounded-md border border-green-500 '>Manage Listings</button>
         </div>
         </div>
         </div>

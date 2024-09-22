@@ -14,7 +14,7 @@ const Page = ({params}) => {
     // const router = useRouter();
   const { tab, subtab } = params;
 
-    console.log(tab, subtab);
+    // console.log(tab, subtab);
 
     // useEffect(() => {
     //   if (!tab || (tab !== 'requests' && tab !== 'rentals' && tab!='cars' && tab!='performance' && tab!='account' && tab!='payments')) {
@@ -33,11 +33,11 @@ const Page = ({params}) => {
           <Link href={'/dashboard/payments'} className={` px-7 py-5 border-b-4 ${tab==='payments' ? 'border-green-500 bg-green-500/5 ' : null}   `}>PAYMENTS</Link>
           <Link href={'/dashboard/account'} className={` px-7 py-5 border-b-4 ${tab==='account' ? 'border-green-500 bg-green-500/5 ' : null}   `}>ACCOUNT</Link>
         </div>
-      <div className=' py-3 mt-8 px-5 border rounded-md border-l-4 border-l-red-500 lg:mx-0 mx-2  '>
+      <div className=' py-6 mt-8 px-5 border rounded-md border-l-4 border-l-red-500 lg:mx-0 mx-2  '>
         <h3 className=' text-[1.4rem] font-semibold '>Update your payment method</h3>
         <p className=' font-light '>You do not have a payment method for your Getaround Connect subscription.</p>
         <div className=' mt-5 '>
-          <Link href={'/dashboard/account'} className=' px-6 py-1 rounded-md border border-green-500 text-xl '>Update your payment method</Link>
+          <Link href={'/dashboard/account'} className=' px-6 py-2 rounded-md border border-green-500 text-xl '>Update your payment method</Link>
         </div>
       </div>
         {

@@ -54,11 +54,11 @@ export default function Profiles({img}) {
       </button>
       <ul className={`${open ? 'visible translate-y-0 duration-300' : 'invisible translate-y-4'} absolute top-20 flex flex-col gap-2 w-64 z-50 px-2 py-5  right-0 space-y-1 rounded-md bg-white border text-[#000] shadow-md`}>
         
-          <Link  onClick={() => setOpen(false)} href={'/dashboard/requests'}>
+          {/* <Link  onClick={() => setOpen(false)} href={'/dashboard/requests'}>
           <li className={`hover:rounded-md p-2 ${open ? 'opacity-100 duration-300' : 'opacity-0'} hover:bg-green-500 hover:text-white border-b  `}>
             Dashboard
           </li>
-          </Link>
+          </Link> */}
           <Link onClick={() => setOpen(false)} href={'/dashboard/requests'}>
           <li className={`hover:rounded-md p-2 ${open ? 'opacity-100 duration-300' : 'opacity-0'} hover:bg-green-500 hover:text-white border-b  `}>
             Requests
@@ -84,7 +84,7 @@ export default function Profiles({img}) {
           Payments
           </li>
           </Link>
-          <Link onClick={() => setOpen(false)} href={'/profile'}>
+          <Link onClick={() => setOpen(false)} href={'/dashboard/account'}>
           <li className={`hover:rounded-md p-2 ${open ? 'opacity-100 duration-300' : 'opacity-0'} hover:bg-green-500 hover:text-white border-b  `}>
           Accounts
           </li>

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardIcon1 from '@/public/images/dashboardIcon1.png'
 import Image from 'next/image'
 import Link from 'next/link';
@@ -8,14 +8,29 @@ import VerifyProfile from '@/dashboardComponents/VerifyProfile';
 import AccountSettings from '@/dashboardComponents/AccountSettings';
 import PaymentMethods from '@/dashboardComponents/PaymentMethods';
 import PaymentSetting from '@/dashboardComponents/PaymentSetting';
+import axios from 'axios';
 const Account = ({params}) => {
 
   const [value, setValue] = useState('EDITPROFILE')
 
   const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState("Choose One")
+    const [selectedValue, setSelectedValue] = useState("Edit Profile")
+    const [userData, setUserData] = useState("");
     // array of options 
     const options = ['Apple', 'banana', 'chips'];
+
+    useEffect(() => {
+      const hello = async () => {
+        const response = await axios.get(`/api/user/details`, {
+          withCredentials: true,
+        }); // Revalidate every 10 seconds
+        // console.log(response.json());
+  
+        setUserData(response.data.data);
+        // console.log(response);
+      };
+      hello();
+    }, []);
   
 
   return (
@@ -44,7 +59,6 @@ const Account = ({params}) => {
                 <h1 className="font-medium text-gray-600">{selectedValue}</h1>
                 <svg className={`${isOpen ? '-rotate-180' : 'rotate-0'} duration-300`} width={25} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M7 10L12 15L17 10" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>{' '}</g></svg>
             </div>
-            {/* dropdown - options  */}
             <div className={`${isOpen ? 'selectOpen h-full top-0 ' : 'selectClose h-0 -top-4 '} relative flex flex-col gap-2 mx-auto w-full rounded-xl border transition-all ease-in-out duration-300`}>
                 
                     <div  onClick={(e) => { setSelectedValue(e.target.textContent); setIsOpen(false); setValue('EDITPROFILE')}} className="px-6 py-2 text-gray-500 hover:bg-gray-100">
@@ -68,19 +82,24 @@ const Account = ({params}) => {
 
        <div className=' w-full md:w-[70%] lg:w-[80%] transition-all duration-300 ease-linear '>
       {
-        value === 'EDITPROFILE' && <EditProfile />
+        value === 'EDITPROFILE' &&  <EditProfile userData={userData} />
+       
       }
       {
-        value === 'VERIFYPROFILE' && <VerifyProfile />
+        value === 'VERIFYPROFILE' &&  <VerifyProfile />
+        
       }
       {
-        value === 'ACCOUNTSETTING' && <AccountSettings />
+        value === 'ACCOUNTSETTING' &&  <AccountSettings userData={userData} />
+        
       }
       {
-        value === 'PAYMENTMETHOD' && <PaymentMethods />
+        value === 'PAYMENTMETHOD' &&  <PaymentMethods />
+        
       }
       {
         value === 'PAYMENTSETTING' && <PaymentSetting />
+        
       }
        </div>
 

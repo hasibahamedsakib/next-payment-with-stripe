@@ -41,7 +41,7 @@ export async function POST(req) {
             profileImg: user.profileImg
         }
 
-        const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {expiresIn: '1d'});
+        const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {expiresIn: '10d'});
 
         const response = NextResponse.json({
             message: "User Logged in Successfully",

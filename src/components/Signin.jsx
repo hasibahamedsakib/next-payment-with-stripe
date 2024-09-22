@@ -40,6 +40,7 @@ const Signin = () => {
       setLoading(false)
 
     } catch (error) {
+      toast.error('signin error')
       console.log("Signin Error");
       setLoading(false)
     }

@@ -14,7 +14,7 @@ const Rentals = () => {
             <p className=' font-light '>You don&apos;t have any rentals planned. Lets fix that!</p>
         </div>
         <div className=' mt-5 '>
-            <button className=' px-6 py-1 rounded-md border border-green-500 '>Find a car</button>
+            <button className=' px-12 py-2 rounded-md text-xl border border-green-500 '>Find a car</button>
         </div>
         </div>
         </div>

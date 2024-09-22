@@ -10,7 +10,7 @@ import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { signIn, useSession } from "next-auth/react";
+// import { signIn, useSession } from "next-auth/react";
 
 const Signup = () => {
 
@@ -22,8 +22,6 @@ const Signup = () => {
     password:""
   })
 
- const { data: session } = useSession()
-  console.log(`session: ${session}`);
   // if (session) {
   //   router.push('/')
   // }
@@ -39,31 +37,21 @@ const Signup = () => {
       setLoading(true)
       const res = await axios.post("/api/auth/signup", formData)
       console.log(res.data);
-      console.log(res.data.success);
+      // console.log(res.data.success);
       
       
         if(res.data.success){
           toast.success("User Signed Up Successfully",{
             duration: 3000
           })
-          // toast.success('A verification email has been sent; please check your inbox and click the link to verify your account.', {
-          //   duration: 3000,
-          //   style: {
-          //     border: '1px solid #713200',
-          //     padding: '16px',
-          //     color: '#713200',
-          //   },
-          //   iconTheme: {
-          //     primary: '#713200',
-          //     secondary: '#FFFAEE',
-          //   },
-          // });
-          router.push("/auth/signin")
+          window.location.reload()
+          router.push("/")
         }
       
       setLoading(false)
 
     } catch (error) {
+      toast.error('Signup Error')
       console.log("Signup Error");
       setLoading(false)
     }
@@ -171,7 +159,7 @@ const Signup = () => {
           </div>
         </div>
         <div className=" mt-6 ">
-          <button disabled={loading} className=" bg-green-500 w-full text-[1.4rem] py-2 rounded-md text-[#fff] ">
+          <button onClick={handleSubmit} disabled={loading} className=" bg-green-500 w-full text-[1.4rem] py-2 rounded-md text-[#fff] ">
             {
               loading ? "Loading" : "Sign Up"
             }

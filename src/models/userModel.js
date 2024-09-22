@@ -30,6 +30,42 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "https://i.imghippo.com/files/M1ozg1725980497.png"
     },
+    birthDate:{
+        type: Date
+    },
+    birthPlace:{
+        type: String
+    },
+    licenseNumber:{
+        type: Number
+    },
+    licenseIssueDate:{
+        type: Date
+    },
+    licenseIssueCountry:{
+        type: String
+    },
+    phoneNumber: {
+        type: String
+    },
+    addressLine1:{
+        type: String
+    },
+    addressLine2:{
+        type: String
+    },
+    postalCode:{
+        type: String
+    },
+    city:{
+        type: String
+    },
+    state:{
+        type: String
+    },
+    aboutMe:{
+        type: String
+    },
     forgotPasswordToken: String,
     forgotPasswordTokenExpiry: String,
     verifyToken: String,
