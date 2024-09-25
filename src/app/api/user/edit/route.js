@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import multer from "multer";
-import { storage } from "@/utils/cloudinary";
+// import multer from "multer";
+// import { storage } from "@/utils/cloudinary";
 import { connectDB } from "@/dbConfig/dbConfig";
 import bcryptjs from "bcryptjs";
 import User from "@/models/userModel";
+import jwt from 'jsonwebtoken'
 
 // const upload = multer({ storage });
 connectDB();
@@ -49,6 +50,7 @@ export async function POST(req) {
       aboutMe,
       oldPassword,
       newPassword,
+      profileImg
     } = reqBody;
 
     console.log(password, userId);
@@ -133,6 +135,7 @@ export async function POST(req) {
     if (state) updateData.state = state;
     if (aboutMe) updateData.aboutMe = aboutMe;
     if (phoneNumber) updateData.phoneNumber = phoneNumber;
+    if (profileImg) updateData.profileImg = profileImg;
 
     // Handle file upload
     // if (req.file && req.file.path) {
@@ -159,7 +162,15 @@ export async function POST(req) {
       );
     }
 
-    return NextResponse.json(
+    const tokenData = {
+      id: updatedUser._id,
+      email: updatedUser.email,
+      profileImg: updatedUser.profileImg
+  }
+
+  const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {expiresIn: '10d'});
+
+    const response = NextResponse.json(
       {
         message: "User updated successfully",
         success: true,
@@ -169,6 +180,14 @@ export async function POST(req) {
         status: 200,
       }
     );
+
+    response.cookies.set("token", token, {
+      httpOnly: true
+  })
+
+  return response
+
+
   } catch (error) {
     console.log(error);
     return NextResponse.json(

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['i.imghippo.com'], // Add your external image domains here
+        domains: ['i.imghippo.com', 'res.cloudinary.com'], // Add your external image domains here
       },
 };
 

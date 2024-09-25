@@ -1,13 +1,14 @@
 "use client";
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { IoMdCamera } from "react-icons/io";
 
 const EditProfile = ({userData}) => {
   
-  const [file, setFile] = useState("");
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   // const [email, setEmail] = useState("");
@@ -25,50 +26,89 @@ const EditProfile = ({userData}) => {
   const [aboutMe, setAboutMe] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [image, setImage] = useState(null);
+  const [file, setFile] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
   const [imageUploadStatus, setImageUploadStatus] = useState(false);
-  const [imageUploadedUrl, setImageUploadedUrl] = useState('')
+
+  const router = useRouter()
+
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-      setPreviewUrl(URL.createObjectURL(file)); 
+    // const file = e.target.files[0];
+    // if (file) {
+    //   setImage(file);
+    //   setPreviewUrl(URL.createObjectURL(file)); 
+    // }
+
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.readAsDataURL(selectedFile); // Convert file to base64 string
+      reader.onloadend = () => {
+        setFile(reader.result); // Set the base64 string to state
+      };
+         setPreviewUrl(URL.createObjectURL(selectedFile)); 
     }
   };
+// console.log('hello');
 
   const handleImageSubmit = async (e) => {
-    e.preventDefault()
-    setImageUploadStatus(true)
-    if (!image) return;
+    // e.preventDefault()
+    // setImageUploadStatus(true)
+    // if (!image) return;
 
-    const formData = new FormData();
-    formData.append('image', image);
+    // const formData = new FormData();
+    // formData.append('image', image);
 
-    try {
-      const response = await axios.post('/api/user/uploadimage', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      console.log(response);
+    // try {
+    //   const response = await axios.post('/api/user/uploadimage', formData, {
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    //   });
+    //   console.log(response);
       
-      setImageUploadedUrl(response.data.imageUrl);
+    //   setImageUploadedUrl(response.data.imageUrl);
+    //   setImageUploadStatus(false)
+    //   console.log(response.data.imageUrl);
+    // } catch (error) {
+    //   console.error('Image Upload failed:', error);
+    //   setImageUploadStatus(false);
+    // }
+    // console.log('uploading start');
+    
+    setImageUploadStatus(true)
+    try {
+      const res = await axios.post('/api/user/uploadimage', { image: file }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('res');
+      
+      console.log(res);
+      if(res.data.success){
+        setImageUrl(res.data.imageUrl); 
+      }
+      toast.success("Image uploaded successfully")
       setImageUploadStatus(false)
-      console.log(response.data.imageUrl);
+
     } catch (error) {
-      console.error('Image Upload failed:', error);
-      setImageUploadStatus(false);
+      console.error('Error uploading image:', error);
+      setImageUploadStatus(false)
+      toast.error('Image uploaded failed')
+
     }
   };
 
 
   const fileRef = useRef(null);
 
-  console.log(`imag url: ${imageUploadedUrl}`);
+
 
   
+console.log('how how');
 
-  console.log(userData);
+  // console.log(userData);
 
   const handleSubmit = async () => {
 
@@ -91,6 +131,7 @@ const EditProfile = ({userData}) => {
           city,
           state,
           aboutMe,
+          profileImg: imageUrl,
           userId: userData?._id
         },
         {
@@ -109,7 +150,10 @@ const EditProfile = ({userData}) => {
       }
 
       setLoading(false);
-      window.location.reload()
+      setTimeout(()=> {
+        window.location.reload()
+      }, 3000)
+      // router.push('/dashboard/account')
     } catch (error) {
       console.log(error.message);
       toast.error(error.message);

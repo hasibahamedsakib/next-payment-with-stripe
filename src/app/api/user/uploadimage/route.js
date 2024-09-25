@@ -1,24 +1,38 @@
-import upload from '@/utils/cloudinary';
+// import upload from '@/utils/cloudinary';
+import cloudinary from '@/utils/cloudinary';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
-    const result = await new Promise((resolve, reject) => {
-        upload.single('image')(req, {}, (err) => {
-            if (err) {
-                return reject(err);
-            }
-            resolve(req.file);
+    try {
+        const data = await req.json();
+    console.log(data); // Log the entire body to ensure it's in the correct format
+    const { image } = data;
+
+    // console.log(image);
+    
+        
+    
+        if (!image) {
+          return NextResponse.json({ error: 'No image provided',
+            success: false
+           }, { status: 400 });
+        }
+    
+        // Extract base64 string without the data prefix (e.g., "data:image/png;base64,")
+        const base64Data = image.split(',')[1];
+    
+        // Upload the image to Cloudinary
+        const result = await cloudinary.uploader.upload(`data:image/jpeg;base64,${base64Data}`, {
+          folder: 'people',
         });
-    });
-
-    // Ensure req.file exists
-    if (!result) {
-        return NextResponse.json({ message: 'File upload failed' }, { status: 400 });
-    }
-
-    // Get the uploaded image URL from Cloudinary
-    const imageUrl = result.path;
-
-    // Return the image URL in the response
-    return NextResponse.json({ message: 'Image uploaded successfully', imageUrl });
+    
+        return NextResponse.json({ imageUrl: result.secure_url,
+            success: true,
+            message: "Image uploader successfully"
+         });
+      } catch (error) {
+        return NextResponse.json({ error: 'Failed to upload image',
+            success: false
+         }, { status: 500 });
+      }
 }
