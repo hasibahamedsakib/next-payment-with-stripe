@@ -8,7 +8,7 @@ import Achivement from '@/components/Achievement'
 import Link from 'next/link'
 
 
-const page = () => {
+const Page = () => {
   
   
   const [isOpen1, setIsOpen1] = useState(false);
@@ -138,4 +138,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

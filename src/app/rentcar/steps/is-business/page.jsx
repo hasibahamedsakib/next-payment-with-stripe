@@ -48,7 +48,7 @@ const Page = () => {
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
-        <span className="ml-3 text-gray-800">Yes, I'm a professional owner</span>
+        <span className="ml-3 text-gray-800">Yes, I&apos;m a professional owner</span>
       </label>
 
       <label className="inline-flex items-center cursor-pointer">
@@ -69,7 +69,7 @@ const Page = () => {
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
-        <span className="ml-3 text-gray-800">No, I'm a private owner</span>
+        <span className="ml-3 text-gray-800">No, I&apos;m a private owner</span>
       </label>
     </div>
       <div className=" flex items-center gap-5 mt-10 justify-between ">

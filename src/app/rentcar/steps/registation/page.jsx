@@ -31,7 +31,7 @@ const Page = () => {
         </div>
             <div className=' mb-5 '>
                 <h3 className=' text-[1.4rem] text-green-500 font-semibold '>List My car</h3>
-                <p className=' text-[1.7rem] '>What's your plate number?</p>
+                <p className=' text-[1.7rem] '>What&apos;s your plate number?</p>
             </div>
         <div className=' relative w-full  '>
           

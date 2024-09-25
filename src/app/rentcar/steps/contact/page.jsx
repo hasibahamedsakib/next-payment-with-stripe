@@ -24,7 +24,7 @@ const Page = () => {
 
             <div className=' mb-5 '>
                 <h3 className=' text-[1.4rem] text-green-500 font-semibold '>List My car</h3>
-                <p className=' text-[1.7rem] '>What's your phone number?</p>
+                <p className=' text-[1.7rem] '>What&apos;s your phone number?</p>
             </div>
         
             <label className=' text-black font-semibold ml-2 ' htmlFor="">Phone No.</label>
