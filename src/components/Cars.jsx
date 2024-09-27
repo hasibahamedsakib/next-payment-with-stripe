@@ -10,7 +10,13 @@ import { GiCarSeat } from "react-icons/gi";
 
 
 const Cars = () => {
-  const id = localStorage.getItem("id");
+  const [id, setId] = useState('')
+  useEffect(()=> {
+    const userId = localStorage.getItem("id");
+    setId(userId)
+  }, [])
+
+
   console.log(id);
 
   const [Listings, setListings] = useState(null);
@@ -37,7 +43,7 @@ const Cars = () => {
         }
       };
       fetchListedCar();
-    }, []);
+    }, [id]);
 
     console.log(Listings);
     

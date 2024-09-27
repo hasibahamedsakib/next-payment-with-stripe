@@ -29,7 +29,9 @@ const Header = ({user, userData}) => {
  
     const [menuOpen, setMenuOpen] = useState(false)
     // const [userData, setUserData] = useState(null)
-    user ? localStorage.setItem('token', true) : localStorage.removeItem('token')
+    useEffect(()=> {
+      user ? localStorage.setItem('token', true) : localStorage.removeItem('token')
+    },[])
 
   const pathname = usePathname();
   // const { data: session } = useSession()

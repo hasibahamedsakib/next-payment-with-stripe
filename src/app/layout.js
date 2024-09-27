@@ -37,7 +37,7 @@ export const metadata = {
 
 
 
-export default async function RootLayout({ children }) {
+export default function RootLayout({ children }) {
 
   const cookieStore = cookies();
   const token = cookieStore.get('token')?.value;

@@ -1,5 +1,4 @@
 'use client'
-// src/app/context/FormContext.js
 import { createContext, useContext, useEffect, useState } from 'react';
 
 // Create the context
@@ -22,21 +21,22 @@ const defaultFormData = {
   otherFeatures: []
 };
 
-const getInitialFormData = () => {
-  if (typeof window !== 'undefined') {
-    const savedData = localStorage.getItem('formData');
-    return savedData ? JSON.parse(savedData) : defaultFormData
-  }
-  return defaultFormData
-};
-
-// Provider component to wrap around the multi-step form
 export const FormProvider = ({ children }) => {
-  const [formData, setFormData] = useState(getInitialFormData);
+  const [formData, setFormData] = useState(defaultFormData);
+
+  useEffect(() => {
+    // Only access localStorage on the client side
+    const savedData = localStorage.getItem('formData');
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
 
   useEffect(() => {
     // Sync formData with localStorage whenever it changes
-    localStorage.setItem('formData', JSON.stringify(formData));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('formData', JSON.stringify(formData));
+    }
   }, [formData]);
 
   const updateFormData = (key, value) => {
