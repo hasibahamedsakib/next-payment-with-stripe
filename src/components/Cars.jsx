@@ -13,7 +13,10 @@ const Cars = () => {
   const [id, setId] = useState('')
   useEffect(()=> {
     const userId = localStorage.getItem("id");
-    setId(userId)
+    if(userId){
+
+      setId(userId)
+    }
   }, [])
 
 

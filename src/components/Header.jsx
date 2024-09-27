@@ -20,9 +20,10 @@ const Header = ({user, userData}) => {
   const { formData, updateFormData } = useFormContext();
   console.log(formData);
   useEffect(()=> {
-    userData.id && updateFormData("userId", userData.id )
-    if(userData.id){
-      localStorage.setItem('id', userData.id)
+     
+    if(userData?.id){
+      updateFormData("userId", userData?.id )
+      localStorage.setItem('id', userData?.id)
     }
   }, [])
   
