@@ -10,13 +10,26 @@ import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
 import Profiles from "./Profiles";
 import { useSession } from "next-auth/react";
+import { useFormContext } from "@/context/FormContext";
 
 
 
 const Header = ({user, userData}) => {
+  // console.log(userData.id);
+
+  const { formData, updateFormData } = useFormContext();
+  console.log(formData);
+  useEffect(()=> {
+    userData.id && updateFormData("userId", userData.id )
+    if(userData.id){
+      localStorage.setItem('id', userData.id)
+    }
+  }, [])
+  
  
     const [menuOpen, setMenuOpen] = useState(false)
     // const [userData, setUserData] = useState(null)
+    user ? localStorage.setItem('token', true) : localStorage.removeItem('token')
 
   const pathname = usePathname();
   // const { data: session } = useSession()

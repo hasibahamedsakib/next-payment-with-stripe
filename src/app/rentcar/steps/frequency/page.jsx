@@ -1,16 +1,32 @@
 'use client'
+import { useFormContext } from '@/context/FormContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 const Page = () => {
 
-    const [selectedOption, setSelectedOption] = useState("");
+  const token = localStorage.getItem("token");
+  const router = useRouter();
+  console.log(token);
+
+  !token && router.push("/auth/signin");
+
+  const { formData, updateFormData } = useFormContext();
+  console.log(formData);
+
+    const [selectedOption, setSelectedOption] = useState(formData.availableWeekends ? formData.availableWeekends : "");
 
     const handleOptionChange = (option) => {
       setSelectedOption(option);
+      updateFormData("availableWeekends", option)
     }
 
     const ProgressNumber = 77
+
+    console.log(selectedOption);
+    
 
   return (
     <div className=' max-w-[700px] mx-auto min-h-[70vh] '>
@@ -97,7 +113,7 @@ const Page = () => {
           )}
         </span>
         <div>
-        <span className=" text-gray-800 font-semibold ">2 to 4 weekends on average</span>
+        <span className=" text-gray-800 font-semibold ">0 to 1 weekends on average</span>
         <p>This car will regularly be available at weekends</p>
         </div>
       </label>
@@ -109,11 +125,17 @@ const Page = () => {
               Previous
             </button>
           </Link>
-          <Link href={"well-maintained"} className=" w-full ">
+          {
+            selectedOption ? <Link href={"well-maintained"} className=" w-full ">
             <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
               Next
             </button>
-          </Link>
+          </Link> : <div onClick={()=>toast.error("Select one option please")} className=" w-full ">
+            <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
+              Next
+            </button>
+          </div>
+          }
         </div>
        </div>
     </div>

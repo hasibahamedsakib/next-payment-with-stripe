@@ -1,13 +1,26 @@
 'use client'
+import { useFormContext } from '@/context/FormContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 const Page = () => {
 
-    const [selectedOption, setSelectedOption] = useState("");
+  const token = localStorage.getItem("token");
+  const router = useRouter();
+  console.log(token);
+
+  !token && router.push("/auth/signin");
+
+  const { formData, updateFormData } = useFormContext();
+  console.log(formData);
+
+    const [selectedOption, setSelectedOption] = useState(formData.registeredBusiness ? formData.registeredBusiness : "");
 
     const handleOptionChange = (option) => {
       setSelectedOption(option);
+      updateFormData("registeredBusiness", option)
     }
 
     const ProgressNumber = 63;
@@ -78,11 +91,17 @@ const Page = () => {
               Previous
             </button>
           </Link>
-          <Link href={"contact"} className=" w-full ">
+          {
+            selectedOption ? <Link href={"contact"} className=" w-full ">
             <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
               Next
             </button>
-          </Link>
+          </Link> : <div onClick={()=>toast.error("You have to select one option")} className=" w-full ">
+            <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
+              Next
+            </button>
+          </div>
+          }
         </div>
        </div>
     </div>

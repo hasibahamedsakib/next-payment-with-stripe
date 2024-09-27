@@ -9,6 +9,8 @@ import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken'
 import SessionWrapper from "@/components/SessionWrapper";
 import { useSession } from "next-auth/react";
+import 'leaflet/dist/leaflet.css';
+import { FormProvider } from "@/context/FormContext";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -41,6 +43,7 @@ export default async function RootLayout({ children }) {
   const token = cookieStore.get('token')?.value;
 
   // console.log(`token : ${token}`);
+  
 
   const data = jwt.decode(token)
   // console.log(`token data: ${data}`);
@@ -59,7 +62,9 @@ export default async function RootLayout({ children }) {
   
 
   return (
-    <SessionWrapper >
+    <FormProvider >
+
+<SessionWrapper >
     <html lang="en">
       <body
         className={`${sunflower.className}  bg-[#FFFCF9] text-black antialiased`}
@@ -71,6 +76,8 @@ export default async function RootLayout({ children }) {
       </body>
     </html>
     </SessionWrapper>
+
+    </FormProvider>
   );
 }
 

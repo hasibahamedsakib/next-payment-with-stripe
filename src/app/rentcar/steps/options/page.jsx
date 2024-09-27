@@ -1,17 +1,34 @@
 "use client";
+import { useFormContext } from "@/context/FormContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Page = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const token = localStorage.getItem("token");
+  const router = useRouter();
+  console.log(token);
+
+  !token && router.push("/auth/signin");
+
+  const { formData, updateFormData } = useFormContext();
+  console.log(formData);
+  
+
+  const [selectedOptions, setSelectedOptions] = useState(formData?.otherFeatures?.length > 0 ? formData.otherFeatures : []);
+  console.log(selectedOptions);
+  
 
   const handleOptionClick = (option) => {
     if (selectedOptions.includes(option)) {
       // Remove option if already clicked (toggle off)
       setSelectedOptions(selectedOptions.filter((item) => item !== option));
+      updateFormData("otherFeatures", selectedOptions.filter((item) => item !== option))
     } else {
       // Add option if not clicked
       setSelectedOptions([...selectedOptions, option]);
+      updateFormData("otherFeatures", [...selectedOptions, option])
     }
   };
 
@@ -36,86 +53,84 @@ const Page = () => {
         </div>
 
         <div className=" flex flex-col gap-2 ">
-          <label htmlFor="" className=" ml-2 text-black font-semibold ">
-            Number of Doors
-          </label>
+          
           <div className=" grid grid-cols-3 md:grid-cols-4 gap-3 ">
             <div
-              onClick={() => handleOptionClick(1)}
+              onClick={() => handleOptionClick("Air conditioning")}
               className={` ${
-                selectedOptions.includes(1) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Air conditioning") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Air conditioning
             </div>
             <div
-              onClick={() => handleOptionClick(2)}
+              onClick={() => handleOptionClick("Bluetooth Audio")}
               className={` ${
-                selectedOptions.includes(2) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Bluetooth Audio") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Bluetooth Audio
             </div>
             <div
-              onClick={() => handleOptionClick(3)}
+              onClick={() => handleOptionClick("Hitch")}
               className={` ${
-                selectedOptions.includes(3) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Hitch") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Hitch
             </div>
             <div
-              onClick={() => handleOptionClick(4)}
+              onClick={() => handleOptionClick("Audio / iPod input")}
               className={` ${
-                selectedOptions.includes(4) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Audio / iPod input") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Audio / iPod input
             </div>
             <div
-              onClick={() => handleOptionClick(5)}
+              onClick={() => handleOptionClick("Wheelchair accessible")}
               className={` ${
-                selectedOptions.includes(5) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Wheelchair accessible") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Wheelchair accessible
             </div>
             <div
-              onClick={() => handleOptionClick(6)}
+              onClick={() => handleOptionClick("Apple CarPlay")}
               className={` ${
-                selectedOptions.includes(6) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Apple CarPlay") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Apple CarPlay
             </div>
             <div
-              onClick={() => handleOptionClick(7)}
+              onClick={() => handleOptionClick("Android Auto")}
               className={` ${
-                selectedOptions.includes(7) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Android Auto") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Android Auto
             </div>
             <div
-              onClick={() => handleOptionClick(8)}
+              onClick={() => handleOptionClick("Dashcam")}
               className={` ${
-                selectedOptions.includes(8) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Dashcam") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Dashcam
             </div>
             <div
-              onClick={() => handleOptionClick(9)}
+              onClick={() => handleOptionClick("Four-wheel drive")}
               className={` ${
-                selectedOptions.includes(9) ? "border-green-500 border-2" : null
+                selectedOptions.includes("Four-wheel drive") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Four-wheel drive
             </div>
             <div
-              onClick={() => handleOptionClick(10)}
+              onClick={() => handleOptionClick("Ski racks")}
               className={` ${
-                selectedOptions.includes(10)
+                selectedOptions.includes("Ski racks")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -123,9 +138,9 @@ const Page = () => {
               Ski racks
             </div>
             <div
-              onClick={() => handleOptionClick(11)}
+              onClick={() => handleOptionClick("Snow chains")}
               className={` ${
-                selectedOptions.includes(11)
+                selectedOptions.includes("Snow chains")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -133,9 +148,9 @@ const Page = () => {
               Snow chains
             </div>
             <div
-              onClick={() => handleOptionClick(12)}
+              onClick={() => handleOptionClick("Winter tires")}
               className={` ${
-                selectedOptions.includes(12)
+                selectedOptions.includes("Winter tires")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -143,9 +158,9 @@ const Page = () => {
               Winter tires
             </div>
             <div
-              onClick={() => handleOptionClick(13)}
+              onClick={() => handleOptionClick("Bike rack")}
               className={` ${
-                selectedOptions.includes(13)
+                selectedOptions.includes("Bike rack")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -153,9 +168,9 @@ const Page = () => {
               Bike rack
             </div>
             <div
-              onClick={() => handleOptionClick(14)}
+              onClick={() => handleOptionClick("Roof box")}
               className={` ${
-                selectedOptions.includes(14)
+                selectedOptions.includes("Roof box")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -163,9 +178,9 @@ const Page = () => {
               Roof box
             </div>
             <div
-              onClick={() => handleOptionClick(15)}
+              onClick={() => handleOptionClick("Baby seat")}
               className={` ${
-                selectedOptions.includes(15)
+                selectedOptions.includes("Baby seat")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -173,9 +188,9 @@ const Page = () => {
               Baby seat
             </div>
             <div
-              onClick={() => handleOptionClick(16)}
+              onClick={() => handleOptionClick("GPS")}
               className={` ${
-                selectedOptions.includes(16)
+                selectedOptions.includes("GPS")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -183,9 +198,9 @@ const Page = () => {
               GPS
             </div>
             <div
-              onClick={() => handleOptionClick(17)}
+              onClick={() => handleOptionClick("Cruise control")}
               className={` ${
-                selectedOptions.includes(17)
+                selectedOptions.includes("Cruise control")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}

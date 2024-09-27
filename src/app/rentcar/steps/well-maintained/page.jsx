@@ -1,8 +1,15 @@
 'use client'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
 const Page = () => {
+
+  const token = localStorage.getItem("token");
+  const router = useRouter();
+  console.log(token);
+
+  !token && router.push("/auth/signin");
 
     const [selectedOption, setSelectedOption] = useState("");
 
@@ -27,7 +34,7 @@ const Page = () => {
           <h3 className=" text-[1.4rem] text-green-500 font-semibold ">
             List My car
           </h3>
-          <p className=" text-[1.7rem] ">Are you operating as a registered business?</p>
+          <p className=" text-[1.7rem] ">Is your car well-maintained?</p>
         </div>
         <div className="flex flex-col space-y-4 py-7 ">
       <label className="inline-flex items-center cursor-pointer  ">
