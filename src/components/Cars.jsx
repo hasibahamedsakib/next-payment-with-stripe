@@ -37,7 +37,7 @@ const Cars = () => {
         }
       };
       fetchListedCar();
-    }, [id]);
+    }, []);
 
     console.log(Listings);
     
