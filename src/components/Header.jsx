@@ -26,7 +26,7 @@ const Header = ({user, userData}) => {
       localStorage.setItem('id', userData?.id)
     }
   }, [userData])
-  console.log("id",userData.id);
+  console.log("id",userData?.id)
   
   
  
