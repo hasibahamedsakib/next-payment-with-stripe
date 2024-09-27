@@ -15,7 +15,6 @@ const Cars = () => {
 
   const [Listings, setListings] = useState(null);
 
-  id &&
     useEffect(() => {
       const fetchListedCar = async () => {
         try {
