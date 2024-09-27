@@ -37,15 +37,18 @@ const Cars = () => {
         }
       };
       fetchListedCar();
-    }, []);
+    }, [id]);
+
+    console.log(Listings);
+    
 
   return (
     <div className=" mt-8 border rounded-md h-full min-h-[30rem] ">
       {Listings ? (
         <div className=" p-7 flex flex-col gap-4 ">
           {
-            Listings.map((listing)=> (
-              <div className=" flex gap-4 border px-5 py-2 rounded-md ">
+            Listings.map((listing, idx)=> (
+              <div key={idx} className=" flex gap-4 border px-5 py-2 rounded-md ">
                 <div>
                   <Image src={listing?.image} alt="Car Image" className=" object-cover " width={200} height={100} />
                 </div>

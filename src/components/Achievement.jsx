@@ -1,4 +1,3 @@
-// components/StatsCounter.jsx
 'use client'
 import { useState, useEffect, useRef } from 'react';
 
@@ -21,12 +20,13 @@ export default function Achievement() {
       { threshold: 0.5 } // Trigger the animation when 50% of the component is visible
     );
 
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
+    const currentRef = statsRef.current; // Save the current ref value in a variable
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (statsRef.current) observer.unobserve(statsRef.current);
+      if (currentRef) observer.unobserve(currentRef); // Use the saved ref value in cleanup
     };
   }, []);
 
@@ -54,8 +54,8 @@ export default function Achievement() {
   };
 
   return (
-    <section className=" py-10" ref={statsRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-10" ref={statsRef}>
+      <div className="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
           
           {/* 1.6 million drivers */}
