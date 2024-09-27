@@ -25,7 +25,9 @@ const Header = ({user, userData}) => {
       updateFormData("userId", userData?.id )
       localStorage.setItem('id', userData?.id)
     }
-  }, [])
+  }, [userData])
+  console.log("id",userData.id);
+  
   
  
     const [menuOpen, setMenuOpen] = useState(false)

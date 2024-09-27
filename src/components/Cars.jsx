@@ -20,7 +20,7 @@ const Cars = () => {
   }, [])
 
 
-  console.log(id);
+  console.log("id", id);
 
   const [Listings, setListings] = useState(null);
 
