@@ -2,7 +2,7 @@
 import Footer from "@/components/Footer";
 import "./globals.css";
 import Header from "@/components/Header";
-import { Sunflower } from 'next/font/google';
+
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { cookies } from 'next/headers';
@@ -22,11 +22,7 @@ import { FormProvider } from "@/context/FormContext";
 //   variable: "--font-geist-mono",
 //   weight: "100 900",
 // });
-const sunflower = Sunflower({
-  weight: ['300', '500', '700'],  // You can choose which weights to include
-  subsets: ['latin'],
-  display: 'swap',
-});
+
 
 
 export const metadata = {
@@ -67,7 +63,7 @@ export default function RootLayout({ children }) {
 <SessionWrapper >
     <html lang="en">
       <body
-        className={`${sunflower.className}  bg-[#FFFCF9] text-black antialiased`}
+        className={`  bg-[#FFFCF9] text-black antialiased`}
       >
       <Header user={token ? true : false} userData = {data} />
         {children}

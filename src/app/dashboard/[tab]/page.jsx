@@ -1,6 +1,6 @@
 // 'use client'
 import Account from '@/components/Account';
-import Cars from '@/components/cars';
+import Cars from '@/components/Cars';
 import Payments from '@/components/Payments';
 import Performance from '@/components/Performance';
 import Rentals from '@/components/Rentals';
