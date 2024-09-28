@@ -6,11 +6,20 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(null);
+
   const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
   console.log(token);
 
-  !token && router.push("/auth/signin");
 
   const { formData, updateFormData } = useFormContext();
 
@@ -89,10 +98,13 @@ const Page = () => {
               Make
             </label>
             <div
-              onClick={() => setIsOpen1(!isOpen1)}
+              onClick={() => {
+                setIsOpen1(!isOpen1)
+                setIsOpen2(false)
+              }}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue1}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.carName}</h1>
               <svg
                 className={`${
                   isOpen1 ? "-rotate-180" : "rotate-0"
@@ -126,7 +138,7 @@ const Page = () => {
               isOpen1
                 ? "visible top-16 opacity-100"
                 : "invisible top-4 opacity-0"
-            } absolute z-50 h-[400px] overflow-y-scroll w-full my-4 bg-green-500 text-[#fff]  rounded-md py-4 border duration-300`}
+            } absolute z-50 h-[400px] overflow-y-scroll w-full no-scrollbar my-4 bg-green-500 text-[#fff]  rounded-md py-4 border duration-300`}
           >
             {carNames?.map((car, idx) => (
               <div
@@ -151,10 +163,13 @@ const Page = () => {
               Model
             </label>
             <div
-              onClick={() => setIsOpen2(!isOpen2)}
+              onClick={() => {
+                setIsOpen2(!isOpen2)
+                setIsOpen1(false)
+              }}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue2}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.carModel}</h1>
               <svg
                 className={`${
                   isOpen2 ? "-rotate-180" : "rotate-0"
@@ -188,7 +203,7 @@ const Page = () => {
               isOpen2
                 ? "visible top-16 opacity-100"
                 : "invisible top-4 opacity-0"
-            } absolute my-4 w-full h-[400px] overflow-y-scroll z-50 rounded-md bg-green-500 py-4 border duration-300`}
+            } absolute my-4 w-full h-[400px] overflow-y-scroll no-scrollbar z-50 rounded-md bg-green-500 py-4 border duration-300`}
           >
             {carModels?.map((model, idx) => (
               <div

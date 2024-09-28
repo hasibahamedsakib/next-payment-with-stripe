@@ -2,21 +2,28 @@
 import { useFormContext } from '@/context/FormContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
-  const router = useRouter();
-  console.log(token);
+  const [token, setToken] = useState(null);
 
-  !token && router.push("/auth/signin");
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
 
   const { formData, updateFormData } = useFormContext();
   console.log(formData);
 
-    const [selectedOption, setSelectedOption] = useState(formData.availableWeekends ? formData.availableWeekends : "");
+    const [selectedOption, setSelectedOption] = useState(formData?.availableWeekends ? formData?.availableWeekends : "");
 
     const handleOptionChange = (option) => {
       setSelectedOption(option);
@@ -46,21 +53,21 @@ const Page = () => {
           <p className=" text-[1.7rem] ">How many weekends per month will your car be available?</p>
         </div>
         <div className="flex flex-col space-y-4 py-7 ">
-      <label className={` ${selectedOption === 'all' ? 'bg-green-500/10' : null} px-3 py-4 border rounded-md flex items-center gap-5 text-start cursor-pointer  `}>
+      <label className={` ${formData?.availableWeekends === 'all' ? 'bg-green-500/10' : null} px-3 py-4 border rounded-md flex items-center gap-5 text-start cursor-pointer  `}>
         <input
           type="radio"
           name="owner"
           value="all"
           className="hidden"
-          checked={selectedOption === "all"}
+          checked={formData?.availableWeekends === "all"}
           onChange={() => handleOptionChange("all")}
         />
         <span
           className={`w-5 h-5 rounded-full border-2 flex justify-center items-center ${
-            selectedOption === "all" ? "border-green-500" : "border-gray-300"
+            formData?.availableWeekends === "all" ? "border-green-500" : "border-gray-300"
           }`}
         >
-          {selectedOption === "all" && (
+          {formData?.availableWeekends === "all" && (
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
@@ -70,21 +77,21 @@ const Page = () => {
         </div>
       </label>
 
-      <label className={` ${selectedOption ==='twoToFour' ? 'bg-green-500/10' :null} inline-flex items-center cursor-pointer px-3 py-4 border rounded-md gap-5`}>
+      <label className={` ${formData?.availableWeekends ==='twoToFour' ? 'bg-green-500/10' :null} inline-flex items-center cursor-pointer px-3 py-4 border rounded-md gap-5`}>
         <input
           type="radio"
           name="owner"
           value="twoToFour"
           className="hidden"
-          checked={selectedOption === "twoToFour"}
+          checked={formData?.availableWeekends === "twoToFour"}
           onChange={() => handleOptionChange("twoToFour")}
         />
         <span
           className={`w-5 h-5 rounded-full border-2 flex justify-center items-center ${
-            selectedOption === "twoToFour" ? "border-green-500" : "border-gray-300"
+            formData?.availableWeekends === "twoToFour" ? "border-green-500" : "border-gray-300"
           }`}
         >
-          {selectedOption === "twoToFour" && (
+          {formData?.availableWeekends === "twoToFour" && (
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
@@ -94,21 +101,21 @@ const Page = () => {
         </div>
       </label>
 
-      <label className={` ${selectedOption ==='zeroToOne' ? 'bg-green-500/10' :null} inline-flex items-center cursor-pointer px-3 py-4 border rounded-md gap-5`}>
+      <label className={` ${formData?.availableWeekends ==='zeroToOne' ? 'bg-green-500/10' :null} inline-flex items-center cursor-pointer px-3 py-4 border rounded-md gap-5`}>
         <input
           type="radio"
           name="owner"
           value="zeroToOne"
           className="hidden"
-          checked={selectedOption === "zeroToOne"}
+          checked={formData?.availableWeekends === "zeroToOne"}
           onChange={() => handleOptionChange("zeroToOne")}
         />
         <span
           className={`w-5 h-5 rounded-full border-2 flex justify-center items-center ${
-            selectedOption === "zeroToOne" ? "border-green-500" : "border-gray-300"
+            formData?.availableWeekend === "zeroToOne" ? "border-green-500" : "border-gray-300"
           }`}
         >
-          {selectedOption === "zeroToOne" && (
+          {formData?.availableWeekends === "zeroToOne" && (
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
@@ -126,7 +133,7 @@ const Page = () => {
             </button>
           </Link>
           {
-            selectedOption ? <Link href={"well-maintained"} className=" w-full ">
+            formData?.availableWeekends ? <Link href={"well-maintained"} className=" w-full ">
             <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
               Next
             </button>

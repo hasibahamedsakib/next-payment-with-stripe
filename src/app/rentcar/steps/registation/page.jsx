@@ -8,11 +8,21 @@ import toast from "react-hot-toast";
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(null);
+
   const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
+
   console.log(token);
 
-  !token && router.push("/auth/signin");
 
 
   const { formData, updateFormData } = useFormContext();
@@ -124,7 +134,7 @@ const Page = () => {
             </label>
             <input
               type="text"
-              value={numberPlate}
+              defaultValue={formData?.plateNumber}
               onChange={(e) =>{
                 setNumberPlate(e.target.value)
                 updateFormData("plateNumber", e.target.value)
@@ -142,10 +152,14 @@ const Page = () => {
               Country of registration
             </label>
             <div
-              onClick={() => setIsOpen1(!isOpen1)}
+              onClick={() =>{
+                setIsOpen1(!isOpen1)
+                setIsOpen2(false)
+                setIsOpen3(false)
+              }}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue1}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.countryOfRegistation}</h1>
               <svg
                 className={`${
                   isOpen1 ? "-rotate-180" : "rotate-0"
@@ -179,7 +193,7 @@ const Page = () => {
               isOpen1
                 ? "visible top-16 opacity-100"
                 : "invisible top-4 opacity-0"
-            } absolute my-4 w-full h-[400px] overflow-y-scroll z-50 rounded-md bg-green-500 py-4 border duration-300`}
+            } absolute my-4 w-full h-[400px] overflow-y-scroll no-scrollbar z-50 rounded-md bg-green-500 py-4 border duration-300`}
           >
             {countryCodes?.map((countries, idx) => (
               <div
@@ -203,10 +217,14 @@ const Page = () => {
               State
             </label>
             <div
-              onClick={() => setIsOpen2(!isOpen2)}
+              onClick={() => {
+                setIsOpen2(!isOpen2)
+                setIsOpen1(false)
+                setIsOpen3(false)
+              }}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue2}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.state}</h1>
               <svg
                 className={`${
                   isOpen2 ? "-rotate-180" : "rotate-0"
@@ -240,7 +258,7 @@ const Page = () => {
               isOpen2
                 ? "visible top-16 opacity-100"
                 : "invisible top-4 opacity-0"
-            } absolute my-4 w-full h-[400px] overflow-y-scroll z-50 rounded-md bg-green-500 py-4 border duration-300`}
+            } absolute my-4 w-full h-[400px] overflow-y-scroll no-scrollbar z-50 rounded-md bg-green-500 py-4 border duration-300`}
           >
             {states?.map((state, idx) => (
               <div
@@ -264,10 +282,14 @@ const Page = () => {
               Year of first registration
             </label>
             <div
-              onClick={() => setIsOpen3(!isOpen3)}
+              onClick={() => {
+                setIsOpen3(!isOpen3)
+                setIsOpen1(false)
+                setIsOpen2(false)
+              }}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue3}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.yearOfRegistation}</h1>
               <svg
                 className={`${
                   isOpen3 ? "-rotate-180" : "rotate-0"
@@ -301,7 +323,7 @@ const Page = () => {
               isOpen3
                 ? "visible top-16 opacity-100"
                 : "invisible top-4 opacity-0"
-            } absolute my-4 w-full  h-[400px] overflow-y-scroll z-50 rounded-md bg-green-500 py-4 border duration-300`}
+            } absolute my-4 w-full  h-[400px] overflow-y-scroll no-scrollbar z-50 rounded-md bg-green-500 py-4 border duration-300`}
           >
             {options3?.map((option, idx) => (
               <div
@@ -325,7 +347,7 @@ const Page = () => {
               Previous
             </button>
           </Link>
-          {numberPlate ? (
+          {formData?.plateNumber ? (
             <Link href={"mileage"} className=" w-full ">
               <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
                 Next

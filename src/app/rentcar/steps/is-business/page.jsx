@@ -2,21 +2,31 @@
 import { useFormContext } from '@/context/FormContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
-  const router = useRouter();
-  console.log(token);
+  const [token, setToken] = useState(null);
 
-  !token && router.push("/auth/signin");
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
+
+  console.log(token);
+  
 
   const { formData, updateFormData } = useFormContext();
   console.log(formData);
 
-    const [selectedOption, setSelectedOption] = useState(formData.registeredBusiness ? formData.registeredBusiness : "");
+    const [selectedOption, setSelectedOption] = useState(formData?.registeredBusiness ? formData?.registeredBusiness : "");
 
     const handleOptionChange = (option) => {
       setSelectedOption(option);
@@ -49,15 +59,15 @@ const Page = () => {
           name="owner"
           value="professional"
           className="hidden"
-          checked={selectedOption === "professional"}
+          checked={formData?.registeredBusiness === "professional"}
           onChange={() => handleOptionChange("professional")}
         />
         <span
           className={`w-5 h-5 rounded-full border-2 flex justify-center items-center ${
-            selectedOption === "professional" ? "border-green-500" : "border-gray-300"
+            formData?.registeredBusiness === "professional" ? "border-green-500" : "border-gray-300"
           }`}
         >
-          {selectedOption === "professional" && (
+          {formData?.registeredBusiness === "professional" && (
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
@@ -70,15 +80,15 @@ const Page = () => {
           name="owner"
           value="private"
           className="hidden"
-          checked={selectedOption === "private"}
+          checked={formData?.registeredBusiness === "private"}
           onChange={() => handleOptionChange("private")}
         />
         <span
           className={`w-5 h-5 rounded-full border-2 flex justify-center items-center ${
-            selectedOption === "private" ? "border-green-500" : "border-gray-300"
+            formData?.registeredBusiness === "private" ? "border-green-500" : "border-gray-300"
           }`}
         >
-          {selectedOption === "private" && (
+          {formData?.registeredBusiness === "private" && (
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
@@ -92,7 +102,7 @@ const Page = () => {
             </button>
           </Link>
           {
-            selectedOption ? <Link href={"contact"} className=" w-full ">
+            formData?.registeredBusiness ? <Link href={"contact"} className=" w-full ">
             <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
               Next
             </button>

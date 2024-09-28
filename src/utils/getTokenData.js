@@ -8,6 +8,13 @@ export const getTokenData = (req) => {
         // const token = req.headers.authorization?.split(' ')[1];
         // console.log(token);
         // console.log(`tokened: ${token}`);
+
+        console.log('token',token)
+
+
+        if (!token) {
+            console.log("No token found in cookies");
+        }
         
         
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY)
@@ -17,8 +24,7 @@ export const getTokenData = (req) => {
         return decodedToken.id
 
     } catch (error) {
-        throw new Error(error.message)
-        console.log(error);
+        console.log('getToken error', error.message);
         
     }
 }

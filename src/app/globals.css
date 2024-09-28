@@ -51,3 +51,49 @@
   margin: 0 5px;
 }
 
+
+
+/* Parent element with custom scrollbar line */
+.scrollbar-line {
+  position: relative; /* For positioning the custom scrollbar */
+  overflow-y: scroll;
+  height: 300px; /* Adjust height as needed */
+  padding-right: 20px; /* Add space for the scrollbar line */
+}
+
+/* Create the scrollbar line */
+.scrollbar-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px; /* Width of the scrollbar line */
+  height: 100%;
+  background-color: #3498db; /* Color of the scrollbar line */
+  border-radius: 10px;
+  opacity: 0.5; /* Transparency of the scrollbar line */
+}
+
+/* Hide the native scrollbar for all browsers */
+.scrollbar-line::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, Edge */
+}
+
+.scrollbar-line {
+  scrollbar-width: none; /* For Firefox */
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Ensure the element can still scroll */
+.no-scrollbar {
+  overflow-y: scroll;
+}

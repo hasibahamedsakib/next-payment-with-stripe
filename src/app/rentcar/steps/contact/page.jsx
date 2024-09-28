@@ -7,12 +7,18 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const Page = () => {
+  const [token, setToken] = useState(null);
 
-  const token = localStorage.getItem("token");
   const router = useRouter();
-  console.log(token);
-
-  !token && router.push("/auth/signin");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
 
 
   const { formData, updateFormData } = useFormContext();
@@ -79,7 +85,7 @@ const Page = () => {
                 onClick={() => setIsOpen1(!isOpen1)}
                 className=" flex w-full items-center justify-between rounded-md bg-white px-2 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{selectedValue1}</h1>
+                <h1 className="font-medium text-gray-600">{formData?.countryCode ? formData?.countryCode : selectedValue1}</h1>
                 <svg
                   className={`${
                     isOpen1 ? "-rotate-180" : "rotate-0"
@@ -113,7 +119,7 @@ const Page = () => {
                 isOpen1
                   ? "visible top-10 opacity-100"
                   : "invisible top-4 opacity-0"
-              } absolute my-4 w-full h-[400px] overflow-y-scroll  z-50 rounded-md bg-green-500 py-4 border duration-300`}
+              } absolute my-4 w-full h-[400px] overflow-y-scroll no-scrollbar  z-50 rounded-md bg-green-500 py-4 border duration-300`}
             >
               {countryCodes?.map((country, idx) => (
                 <div
@@ -135,8 +141,8 @@ const Page = () => {
 
           <div className=" w-full ">
             <input
-              type="text"
-              value={number}
+              type="number"
+              defaultValue={formData?.number}
               onChange={(e) => {
                 setNumber(e.target.value);
                 updateFormData("number", e.target.value);
@@ -154,7 +160,7 @@ const Page = () => {
               Previous
             </button>
           </Link>
-          {number ? (
+          {formData?.number ? (
             <Link href={"frequency"} className=" w-full ">
               <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
                 Next

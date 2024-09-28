@@ -2,15 +2,22 @@
 import { useFormContext } from "@/context/FormContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
-  const router = useRouter();
-  console.log(token);
+  const [token, setToken] = useState(null);
 
-  !token && router.push("/auth/signin");
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
 
   const { formData, updateFormData } = useFormContext();
   console.log(formData);
@@ -65,10 +72,13 @@ const Page = () => {
               Fuel
             </label>
             <div
-              onClick={() => setIsOpen1(!isOpen1)}
+              onClick={() => {
+                setIsOpen1(!isOpen1)
+                setIsOpen2(false)
+              }}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue1}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.fuel}</h1>
               <svg
                 className={`${
                   isOpen1 ? "-rotate-180" : "rotate-0"
@@ -126,10 +136,13 @@ const Page = () => {
               Gearbox
             </label>
             <div
-              onClick={() => setIsOpen2(!isOpen2)}
+              onClick={() => {
+                setIsOpen2(!isOpen2)
+                setIsOpen1(false)
+              }}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue2}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.gearbox}</h1>
               <svg
                 className={`${
                   isOpen2 ? "-rotate-180" : "rotate-0"

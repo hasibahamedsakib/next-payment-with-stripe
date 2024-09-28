@@ -1,62 +1,88 @@
-"use client";
-import React, { useEffect, useState } from "react";
+// "use client";
+import React from "react";
 import DashboardIcon1 from "@/public/images/dashboardIcon1.png";
 import Image from "next/image";
-import axios from "axios";
 import { GiCarDoor } from "react-icons/gi";
 import { GiCarSeat } from "react-icons/gi";
+import { cookies } from "next/headers";
+import jwt from 'jsonwebtoken'
 
 
 
 
-const Cars = () => {
-  const [id, setId] = useState('')
-  useEffect(()=> {
-    const userId = localStorage.getItem("id");
-    if(userId){
+const Cars = async () => {
+  // const [id, setId] = useState('')
+  // useEffect(()=> {
+  //   const userId = localStorage.getItem("id");
+  //   if(userId){
 
-      setId(userId)
-    }
-  }, [])
+  //     setId(userId)
+  //   }
+  // }, [])
 
 
-  console.log("id", id);
+  // console.log("id"
 
-  const [Listings, setListings] = useState(null);
+  const cookieStore = cookies();
+  const token = cookieStore.get('token')?.value;
 
-    useEffect(() => {
-      const fetchListedCar = async () => {
-        try {
-          const res = await axios.post(
-            "/api/user/listing/getlistings",
-            { userId: id },
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          console.log(res.data);
-          if(res.data.success){
-            setListings(res.data.data)
-          }
-        } catch (error) {
-          console.log("Listing fetch failed");
-          
-        }
-      };
-      fetchListedCar();
-    }, [id]);
+  // console.log(`token : ${token}`);
+  
 
-    console.log(Listings);
+  const tokendata = jwt.decode(token)
+  console.log("tokendata",tokendata)
+  
+
+  const res = await fetch('http://localhost:3000/api/user/listing/getlistings',{
+    method: 'POST', 
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userId: tokendata?.id }), 
+});
+
+  if (!res.ok) {
+    console.log('Failed to fetch data');
     
+}
 
+  const data = await res.json();
+  const listings = data.data
+  console.log("car Data",listings);
+  
+
+    // useEffect(() => {
+    //   const fetchListedCar = async () => {
+    //     try {
+    //       const res = await axios.post(
+    //         "/api/user/listing/getlistings",
+    //         { userId: id },
+    //         {
+    //           headers: {
+    //             "Content-Type": "application/json",
+    //           },
+    //         }
+    //       );
+    //       console.log(res.data);
+    //       if(res.data.success){
+    //         setListings(res.data.data)
+    //       }
+    //     } catch (error) {
+    //       console.log("Listing fetch failed");
+          
+    //     }
+    //   };
+    //   fetchListedCar();
+    // }, [id]);
+
+    // console.log(listings)
+    
   return (
     <div className=" mt-8 border rounded-md h-full min-h-[30rem] ">
-      {Listings ? (
+      {listings.length > 0 ? (
         <div className=" p-7 flex flex-col gap-4 ">
           {
-            Listings.map((listing, idx)=> (
+            listings.map((listing, idx)=> (
               <div key={idx} className=" flex gap-4 border px-5 py-2 rounded-md ">
                 <div>
                   <Image src={listing?.image} alt="Car Image" className=" object-cover " width={200} height={100} />

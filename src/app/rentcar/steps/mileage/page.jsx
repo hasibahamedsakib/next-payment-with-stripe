@@ -2,15 +2,24 @@
 import { useFormContext } from "@/context/FormContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
-  const router = useRouter();
-  console.log(token);
+  const [token, setToken] = useState(null);
 
-  !token && router.push("/auth/signin");
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
+  console.log(token);
+  
 
 
   const { formData, updateFormData } = useFormContext();
@@ -63,7 +72,7 @@ const Page = () => {
               onClick={() => setIsOpen1(!isOpen1)}
               className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
             >
-              <h1 className="font-medium text-gray-600">{selectedValue1}</h1>
+              <h1 className="font-medium text-gray-600">{formData?.mileage}</h1>
               <svg
                 className={`${
                   isOpen1 ? "-rotate-180" : "rotate-0"

@@ -2,33 +2,40 @@
 import { useFormContext } from "@/context/FormContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
-  const router = useRouter();
-  console.log(token);
+  const [token, setToken] = useState(null);
 
-  !token && router.push("/auth/signin");
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
 
   const { formData, updateFormData } = useFormContext();
   console.log(formData);
   
 
-  const [selectedOptions, setSelectedOptions] = useState(formData?.otherFeatures?.length > 0 ? formData.otherFeatures : []);
+  const [selectedOptions, setSelectedOptions] = useState(formData?.otherFeatures?.length > 0 ? formData?.otherFeatures : []);
   console.log(selectedOptions);
   
 
   const handleOptionClick = (option) => {
-    if (selectedOptions.includes(option)) {
+    if (formData?.otherFeatures.includes(option)) {
       // Remove option if already clicked (toggle off)
-      setSelectedOptions(selectedOptions.filter((item) => item !== option));
-      updateFormData("otherFeatures", selectedOptions.filter((item) => item !== option))
+      // setSelectedOptions(selectedOptions.filter((item) => item !== option));
+      updateFormData("otherFeatures", formData?.otherFeatures.filter((item) => item !== option))
     } else {
       // Add option if not clicked
       setSelectedOptions([...selectedOptions, option]);
-      updateFormData("otherFeatures", [...selectedOptions, option])
+      updateFormData("otherFeatures", [...formData?.otherFeatures, option])
     }
   };
 
@@ -58,7 +65,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Air conditioning")}
               className={` ${
-                selectedOptions.includes("Air conditioning") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Air conditioning") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Air conditioning
@@ -66,7 +73,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Bluetooth Audio")}
               className={` ${
-                selectedOptions.includes("Bluetooth Audio") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Bluetooth Audio") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Bluetooth Audio
@@ -74,7 +81,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Hitch")}
               className={` ${
-                selectedOptions.includes("Hitch") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Hitch") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Hitch
@@ -82,7 +89,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Audio / iPod input")}
               className={` ${
-                selectedOptions.includes("Audio / iPod input") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Audio / iPod input") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Audio / iPod input
@@ -90,7 +97,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Wheelchair accessible")}
               className={` ${
-                selectedOptions.includes("Wheelchair accessible") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Wheelchair accessible") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Wheelchair accessible
@@ -98,7 +105,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Apple CarPlay")}
               className={` ${
-                selectedOptions.includes("Apple CarPlay") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Apple CarPlay") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Apple CarPlay
@@ -106,7 +113,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Android Auto")}
               className={` ${
-                selectedOptions.includes("Android Auto") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Android Auto") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Android Auto
@@ -114,7 +121,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Dashcam")}
               className={` ${
-                selectedOptions.includes("Dashcam") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Dashcam") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Dashcam
@@ -122,7 +129,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Four-wheel drive")}
               className={` ${
-                selectedOptions.includes("Four-wheel drive") ? "border-green-500 border-2" : null
+                formData?.otherFeatures.includes("Four-wheel drive") ? "border-green-500 border-2" : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               Four-wheel drive
@@ -130,7 +137,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Ski racks")}
               className={` ${
-                selectedOptions.includes("Ski racks")
+                formData?.otherFeatures.includes("Ski racks")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -140,7 +147,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Snow chains")}
               className={` ${
-                selectedOptions.includes("Snow chains")
+                formData?.otherFeatures.includes("Snow chains")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -150,7 +157,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Winter tires")}
               className={` ${
-                selectedOptions.includes("Winter tires")
+                formData?.otherFeatures.includes("Winter tires")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -160,7 +167,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Bike rack")}
               className={` ${
-                selectedOptions.includes("Bike rack")
+                formData?.otherFeatures.includes("Bike rack")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -170,7 +177,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Roof box")}
               className={` ${
-                selectedOptions.includes("Roof box")
+                formData?.otherFeatures.includes("Roof box")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -180,7 +187,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Baby seat")}
               className={` ${
-                selectedOptions.includes("Baby seat")
+                formData?.otherFeatures.includes("Baby seat")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -190,7 +197,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("GPS")}
               className={` ${
-                selectedOptions.includes("GPS")
+                formData?.otherFeatures.includes("GPS")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
@@ -200,7 +207,7 @@ const Page = () => {
             <div
               onClick={() => handleOptionClick("Cruise control")}
               className={` ${
-                selectedOptions.includes("Cruise control")
+                formData?.otherFeatures.includes("Cruise control")
                   ? "border-green-500 border-2"
                   : null
               } px-1 text-center border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}

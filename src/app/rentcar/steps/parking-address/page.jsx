@@ -4,18 +4,29 @@ import { useFormContext } from "@/context/FormContext";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const Page = () => {
-  const token = localStorage.getItem("token");
-  const router = useRouter();
-  console.log(token);
+  const [token, setToken] = useState(null);
 
-  !token && router.push("/auth/signin");
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
 
   const { formData, updateFormData, resetFormData } = useFormContext();
   console.log(formData);
+
+  useEffect(()=> {
+    updateFormData("userId", localStorage.getItem('id'))
+  }, [])
 
   const [address, setAddress] = useState(
     formData.meetingPoint ? formData.meetingPoint : ""
@@ -75,6 +86,7 @@ const Page = () => {
       console.log(res.data);
       
       if(res.data.success){
+        ProgressNumber = 100
         resetFormData()
         toast.success("The car listed Successfully",{
           duration: 3000
@@ -82,6 +94,7 @@ const Page = () => {
         setTimeout(() => {
           window.location.reload()
         }, 3000);
+        router.push('/rentcar')
         
       }else{
         toast.error(res.data.message)
@@ -104,7 +117,7 @@ const Page = () => {
 
   console.log(suggestions);
 
-  const ProgressNumber = 95;
+  let ProgressNumber = 95;
 
   return (
     <div className=" max-w-[700px] mx-auto min-h-[70vh]   ">

@@ -13,10 +13,14 @@ import { useFormContext } from "@/context/FormContext";
 const Page = () => {
 
   const { formData, updateFormData } = useFormContext();
-
+  
+  
   const [isOpen1, setIsOpen1] = useState(false);
   const [selectedValue1, setSelectedValue1] = useState(formData.carName ? formData.carName : "Toyota");
   const options1 = ["Tesla", "Tata", "Suzuki"];
+  console.log(selectedValue1);
+  console.log('rentcar',formData.carName);
+  
 
   const [isOpen2, setIsOpen2] = useState(false);
   const [selectedValue2, setSelectedValue2] = useState(formData.carModel ? formData.carModel : "Camry");
@@ -70,20 +74,33 @@ const Page = () => {
     "+2,00,000 mi",
   ];
 
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+    }
+  }, []);
 
   console.log(token);
 
-  const [query, setQuery] = useState(formData.city ? formData.city : "");
+  const [query, setQuery] = useState("");
   const [cities, setCities] = useState([]);
+  const [city, setCity] = useState(formData?.city ? formData?.city : '')
 
   const handleInputChange = async (e) => {
     const searchValue = e.target.value;
+    
     
     setQuery(searchValue);
 
     if (searchValue.length > 2) {
       setIsOpen5(true);
+      setIsOpen4(false);
+      setIsOpen3(false);
+      setIsOpen2(false);
+      setIsOpen1(false);
       const options = {
         method: "GET",
         url: `https://wft-geo-db.p.rapidapi.com/v1/geo/cities`,
@@ -138,11 +155,23 @@ const Page = () => {
   }, []);
 
 
+  // const [token, setToken] = useState(null);
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const storedToken = localStorage.getItem("token");
+  //     setToken(storedToken);
+  //   }
+  // }, []);
+  // const router = useRouter();
+  // console.log(token);
   
 
   // updateFormData('carName', "lambo")
 
   console.log(formData);
+  console.log("qu",query);
+  
   
 
   // console.log(carModels);
@@ -160,10 +189,16 @@ const Page = () => {
             <div className=" relative w-full ">
               {/* dropdown - btn */}
               <div
-                onClick={() => setIsOpen1(!isOpen1)}
+                onClick={() => {
+                  setIsOpen1(!isOpen1)
+                  setIsOpen2(false)
+                  setIsOpen3(false)
+                  setIsOpen4(false)
+                  setIsOpen5(false)
+                }}
                 className=" flex w-full items-center justify-between rounded-xl bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{selectedValue1}</h1>
+                <h1 className="font-medium text-gray-600">{formData?.carName}</h1>
                 <svg
                   className={`${
                     isOpen1 ? "-rotate-180" : "rotate-0"
@@ -196,7 +231,7 @@ const Page = () => {
                   isOpen1
                     ? "visible top-10 opacity-100"
                     : "invisible top-0 opacity-0"
-                } absolute z-50 h-[400px] overflow-y-scroll w-full my-4 bg-green-500 text-[#fff]  rounded-xl py-4 border duration-300`}
+                } absolute z-50 h-[400px] no-scrollbar overflow-y-scroll w-full my-4 bg-green-500 text-[#fff]  rounded-xl py-4 border duration-300`}
               >
                 {carNames?.map((car, idx) => (
                   <div
@@ -217,10 +252,16 @@ const Page = () => {
             <div className=" relative w-full ">
               {/* dropdown - btn */}
               <div
-                onClick={() => setIsOpen2(!isOpen2)}
+                onClick={() => {
+                  setIsOpen2(!isOpen2)
+                  setIsOpen1(false)
+                  setIsOpen3(false)
+                  setIsOpen4(false)
+                  setIsOpen5(false)
+                }}
                 className=" flex w-full items-center justify-between rounded-xl bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{selectedValue2}</h1>
+                <h1 className="font-medium text-gray-600">{formData?.carModel}</h1>
                 <svg
                   className={`${
                     isOpen2 ? "-rotate-180" : "rotate-0"
@@ -253,7 +294,7 @@ const Page = () => {
                   isOpen2
                     ? "visible top-10 opacity-100"
                     : "invisible top-0 opacity-0"
-                } absolute my-4 w-full h-[400px] overflow-y-scroll  z-50 rounded-xl bg-green-500 py-4 border duration-300`}
+                } absolute my-4 w-full h-[400px] overflow-y-scroll no-scrollbar z-50 rounded-xl bg-green-500 py-4 border duration-300`}
               >
                 {carModels?.map((model, idx) => (
                   <div
@@ -276,10 +317,16 @@ const Page = () => {
             <div className=" relative w-full ">
               {/* dropdown - btn */}
               <div
-                onClick={() => setIsOpen3(!isOpen3)}
+                onClick={() => {
+                  setIsOpen3(!isOpen3)
+                  setIsOpen1(false)
+                  setIsOpen2(false)
+                  setIsOpen4(false)
+                  setIsOpen5(false)
+                }}
                 className=" flex w-full items-center justify-between rounded-xl bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{selectedValue3}</h1>
+                <h1 className="font-medium text-gray-600">{formData?.yearOfRegistation}</h1>
                 <svg
                   className={`${
                     isOpen3 ? "-rotate-180" : "rotate-0"
@@ -312,7 +359,7 @@ const Page = () => {
                   isOpen3
                     ? "visible top-10 opacity-100"
                     : "invisible top-0 opacity-0"
-                } absolute h-[400px] overflow-y-scroll z-50 w-full my-4 bg-green-500 text-[#fff]  rounded-xl py-4 border duration-300`}
+                } absolute h-[400px] overflow-y-scroll no-scrollbar z-50 w-full my-4 bg-green-500 text-[#fff]  rounded-xl py-4 border duration-300`}
               >
                 {options3?.map((option, idx) => (
                   <div
@@ -333,10 +380,16 @@ const Page = () => {
             <div className=" relative w-full ">
               {/* dropdown - btn */}
               <div
-                onClick={() => setIsOpen4(!isOpen4)}
+                onClick={() => {
+                  setIsOpen4(!isOpen4)
+                  setIsOpen1(false)
+                  setIsOpen2(false)
+                  setIsOpen3(false)
+                  setIsOpen5(false)
+                }}
                 className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{selectedValue4}</h1>
+                <h1 className="font-medium text-gray-600">{formData?.mileage}</h1>
                 <svg
                   className={`${
                     isOpen4 ? "-rotate-180" : "rotate-0"
@@ -391,7 +444,8 @@ const Page = () => {
           <div>
             <div className=" relative ">
               <input
-                value={query}
+                defaultValue={formData?.city}
+                // value={formData?.city}
                 onChange={handleInputChange}
                 type="text"
                 placeholder="Enter your city"
@@ -404,7 +458,7 @@ const Page = () => {
                   isOpen5
                     ? "visible top-10 opacity-100"
                     : "invisible top-0 opacity-0"
-                } absolute  z-50 my-4 w-full rounded-md bg-green-500 py-4 border duration-300`}
+                } absolute no-scrollbar z-50 my-4 w-full rounded-md bg-green-500 py-4 border duration-300`}
               >
                 {cities?.map((city, idx) => (
                   <div
@@ -412,6 +466,7 @@ const Page = () => {
                     onClick={(e) => {
                       setQuery(e.target.textContent);
                       updateFormData("city", e.target.textContent)
+                      setCity(e.target.textContent)
                       setIsOpen5(false);
                     }}
                     className="px-6 py-2 text-[#fff] font-semibold hover:bg-green-400"
@@ -424,7 +479,7 @@ const Page = () => {
           </div>
 
           {token ? 
-            query ? (
+            formData?.city ? (
               <Link href={"rentcar/steps/model"}>
                 <button className=" w-full text-[#fff] font-semibold bg-green-500 rounded-lg py-2 ">
                   Next

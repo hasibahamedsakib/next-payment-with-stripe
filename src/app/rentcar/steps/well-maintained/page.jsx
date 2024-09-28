@@ -1,20 +1,37 @@
 'use client'
+import { useFormContext } from '@/context/FormContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(null);
+
   const router = useRouter();
-  console.log(token);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
 
-  !token && router.push("/auth/signin");
+  const { formData, updateFormData } = useFormContext();
+  console.log(formData);
 
-    const [selectedOption, setSelectedOption] = useState("");
+    const [selectedOption, setSelectedOption] = useState(false);
 
     const handleOptionChange = (option) => {
       setSelectedOption(option);
+      if(option==='well-maintained'){
+      updateFormData("wellMaintained", option)
+      }
+      else{
+        updateFormData("uptodate", option)
+      }
     }
 
     const ProgressNumber = 85
@@ -43,15 +60,15 @@ const Page = () => {
           name="owner"
           value=""
           className="hidden"
-          checked={selectedOption === ""}
-          onChange={() => handleOptionChange("")}
+          checked={formData?.wellMaintained==='well-maintained'}
+          onChange={() => handleOptionChange('well-maintained')}
         />
         <span
           className={`w-5 h-5 rounded-full border-2 flex justify-center items-center ${
-            selectedOption === "" ? "border-green-500" : "border-gray-300"
+            formData?.wellMaintained=== 'well-maintained' ? "border-green-500" : "border-gray-300"
           }`}
         >
-          {selectedOption === "" && (
+          {formData?.wellMaintained==='well-maintained' && (
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>
@@ -64,15 +81,15 @@ const Page = () => {
           name="owner"
           value=""
           className="hidden"
-          checked={selectedOption === ""}
-          onChange={() => handleOptionChange("")}
+          checked={formData?.uptodate==='uptodate'}
+          onChange={() => handleOptionChange('uptodate')}
         />
         <span
           className={`w-5 h-5 rounded-full border-2 flex justify-center items-center ${
-            selectedOption === "" ? "border-green-500" : "border-gray-300"
+            formData?.uptodate==='uptodate' ? "border-green-500" : "border-gray-300"
           }`}
         >
-          {selectedOption === "" && (
+          {formData?.uptodate==='uptodate' && (
             <span className="w-3 h-3 bg-green-500 rounded-full"></span>
           )}
         </span>

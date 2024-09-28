@@ -2,25 +2,32 @@
 import { useFormContext } from "@/context/FormContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Page = () => {
 
-  const token = localStorage.getItem("token");
-  const router = useRouter();
-  console.log(token);
+  const [token, setToken] = useState(null);
 
-  !token && router.push("/auth/signin");
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+      if (!storedToken) {
+        router.push("/auth/signin");
+      }
+    }
+  }, []);
 
   const { formData, updateFormData } = useFormContext();
   console.log(formData);
   
 
   const [numDoors, setNumDoors] = useState(
-    formData.numberOfDoors ? formData.numberOfDoors : '2'
+    formData.numberOfDoors ? formData?.numberOfDoors : '2'
   );
   const [numSeats, setNumSeats] = useState(
-    formData.numberOfSeats ? formData.numberOfSeats : '4'
+    formData.numberOfSeats ? formData?.numberOfSeats : '4'
   );
   const ProgressNumber = 45;
 
@@ -57,7 +64,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '2')
               }}
               className={` ${
-                numDoors === '2' ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === '2' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               2
@@ -68,7 +75,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '3')
               }}
               className={` ${
-                numDoors === '3' ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === '3' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               3
@@ -79,7 +86,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '4')
               }}
               className={` ${
-                numDoors === '4' ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === '4' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               4
@@ -90,7 +97,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '5')
               }}
               className={` ${
-                numDoors === '5' ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === '5' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               5
@@ -101,7 +108,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '6')
               }}
               className={` ${
-                numDoors === '6' ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === '6' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               6
@@ -112,7 +119,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '7')
               }}
               className={` ${
-                numDoors === '7' ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === '7' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               7
@@ -123,7 +130,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '8')
               }}
               className={` ${
-                numDoors === '8' ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === '8' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               8
@@ -134,7 +141,7 @@ const Page = () => {
                 updateFormData("numberOfDoors", '9+')
               }}
               className={` ${
-                numDoors === "9+" ? "border-green-500 border-2" : null
+                formData?.numberOfDoors === "9+" ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               9+
@@ -153,7 +160,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '2')
               }}
               className={` ${
-                numSeats === '2' ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === '2' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               2
@@ -164,7 +171,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '3')
               }}
               className={` ${
-                numSeats === '3' ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === '3' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               3
@@ -175,7 +182,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '4')
               }}
               className={` ${
-                numSeats === '4' ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === '4' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               4
@@ -186,7 +193,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '5')
               }}
               className={` ${
-                numSeats === '5' ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === '5' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               5
@@ -197,7 +204,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '6')
               }}
               className={` ${
-                numSeats === '6' ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === '6' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               6
@@ -208,7 +215,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '7')
               }}
               className={` ${
-                numSeats === '7' ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === '7' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               7
@@ -219,7 +226,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '8')
               }}
               className={` ${
-                numSeats === '8' ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === '8' ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               8
@@ -230,7 +237,7 @@ const Page = () => {
                 updateFormData("numberOfSeats", '9+')
               }}
               className={` ${
-                numSeats === "9+" ? "border-green-500 border-2" : null
+                formData?.numberOfSeats === "9+" ? "border-green-500 border-2" : null
               } border hover:border-green-500 transition-colors duration-300 ease-in-out cursor-pointer py-3 rounded-lg flex items-center justify-center `}
             >
               9+
