@@ -1,4 +1,4 @@
-// "use client";
+
 import React from "react";
 import DashboardIcon1 from "@/public/images/dashboardIcon1.png";
 import Image from "next/image";
@@ -10,23 +10,13 @@ import jwt from 'jsonwebtoken'
 
 
 
-const Cars = async () => {
-  // const [id, setId] = useState('')
-  // useEffect(()=> {
-  //   const userId = localStorage.getItem("id");
-  //   if(userId){
-
-  //     setId(userId)
-  //   }
-  // }, [])
-
-
-  // console.log("id"
+const cars = async () => {
+  
 
   const cookieStore = cookies();
   const token = cookieStore.get('token')?.value;
 
-  // console.log(`token : ${token}`);
+  
   
 
   const tokendata = jwt.decode(token)
@@ -49,33 +39,6 @@ const Cars = async () => {
   const data = await res.json();
   const listings = data.data
   console.log("car Data",listings);
-  
-
-    // useEffect(() => {
-    //   const fetchListedCar = async () => {
-    //     try {
-    //       const res = await axios.post(
-    //         "/api/user/listing/getlistings",
-    //         { userId: id },
-    //         {
-    //           headers: {
-    //             "Content-Type": "application/json",
-    //           },
-    //         }
-    //       );
-    //       console.log(res.data);
-    //       if(res.data.success){
-    //         setListings(res.data.data)
-    //       }
-    //     } catch (error) {
-    //       console.log("Listing fetch failed");
-          
-    //     }
-    //   };
-    //   fetchListedCar();
-    // }, [id]);
-
-    // console.log(listings)
     
   return (
     <div className=" mt-8 border rounded-md h-full min-h-[30rem] ">
@@ -144,4 +107,4 @@ const Cars = async () => {
   );
 };
 
-export default Cars;
+export default cars;
