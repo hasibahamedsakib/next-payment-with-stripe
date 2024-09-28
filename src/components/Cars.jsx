@@ -17,13 +17,21 @@ const cars = async () => {
   const token = cookieStore.get('token')?.value;
 
   
-  
+  let tokendata = null;
+if (token) {
+  tokendata = jwt.decode(token);
+} else {
+  console.log("Token not found");
+  return null; // or handle it appropriately
+}
 
-  const tokendata = jwt.decode(token)
+
+ 
   console.log("tokendata",tokendata)
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   
 
-  const res = await fetch('http://localhost:3000/api/user/listing/getlistings',{
+  const res = await fetch(`${apiUrl}/api/user/listing/getlistings`,{
     method: 'POST', 
     headers: {
         'Content-Type': 'application/json',
@@ -42,7 +50,7 @@ const cars = async () => {
     
   return (
     <div className=" mt-8 border rounded-md h-full min-h-[30rem] ">
-      {listings.length > 0 ? (
+      {listings || listings.length > 0 ? (
         <div className=" p-7 flex flex-col gap-4 ">
           {
             listings.map((listing, idx)=> (
