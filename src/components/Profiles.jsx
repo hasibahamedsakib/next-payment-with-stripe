@@ -64,22 +64,22 @@ export default function Profiles({img}) {
             Requests
           </li>
           </Link>
-          <Link onClick={() => setOpen(false)} href={'/dashboard/requests'}>
+          <Link onClick={() => setOpen(false)} href={'/dashboard/rentals'}>
           <li className={`hover:rounded-md p-2 ${open ? 'opacity-100 duration-300' : 'opacity-0'} hover:bg-green-500 hover:text-white border-b  `}>
             Rentals
           </li>
           </Link>
-          <Link onClick={() => setOpen(false)} href={'/dashboard/requests'}>
+          <Link onClick={() => setOpen(false)} href={'/dashboard/cars'}>
           <li className={`hover:rounded-md p-2 ${open ? 'opacity-100 duration-300' : 'opacity-0'} hover:bg-green-500 hover:text-white border-b  `}>
           Cars
           </li>
           </Link>
-          <Link onClick={() => setOpen(false)} href={'/dashboard/requests'}>
+          <Link onClick={() => setOpen(false)} href={'/dashboard/performance'}>
           <li className={`hover:rounded-md p-2 ${open ? 'opacity-100 duration-300' : 'opacity-0'} hover:bg-green-500 hover:text-white border-b  `}>
           Performance
           </li>
           </Link>
-          <Link onClick={() => setOpen(false)} href={'/dashboard/requests'}>
+          <Link onClick={() => setOpen(false)} href={'/dashboard/payments'}>
           <li className={`hover:rounded-md p-2 ${open ? 'opacity-100 duration-300' : 'opacity-0'} hover:bg-green-500 hover:text-white border-b  `}>
           Payments
           </li>

@@ -78,11 +78,11 @@ const page = async ({params}) => {
 
                 
               </div>
-              <div className=' border-b hover:bg-green-500/10 px-4 flex items-center gap-2 '>
+              <Link href={`/dashboard/cars/${listing?.plateNumber}/uploadimage`} className=' py-6 border-b hover:bg-green-500/10 px-4 flex items-center gap-2 '>
                 <MdCameraEnhance className=' text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 ' />
-                {/* <span className=' font-semibold '>Add Photos</span> */}
-                <CarImageUpload />
-              </div>
+                <span className=' font-semibold '>Add Photos</span>
+                {/* <CarImageUpload /> */}
+              </Link>
               <div className=' py-6 border-b hover:bg-green-500/10 px-4 flex items-center gap-2 '>
                 <FaCheck className=' text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 ' />
                 <span className=' font-semibold '>Update your calender</span>

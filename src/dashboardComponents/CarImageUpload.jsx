@@ -11,14 +11,18 @@ import CarImg4 from "@/public/images/CarInnerImg.webp"
 
 
 export default function CarImageUpload() {
+
     const [openModal, setOpenModal] = useState(false);
+
+
+
     return (
         <div className="w-full ">
             <button onClick={() => setOpenModal(true)} className=" py-6 w-full text-left font-semibold ">
                 Add Photos
             </button>
             <div onClick={() => setOpenModal(false)} className={`fixed z-[100]  w-screen ${openModal ? 'visible opacity-100' : 'invisible opacity-0'} inset-0 grid place-items-center bg-white/20 backdrop-blur-sm duration-100 dark:bg-transparent`}>
-                <div onClick={(e_) => e_.stopPropagation()} className={`absolute   rounded-lg  bg-white p-6  drop-shadow-lg ${openModal ? 'opacity-1 duration-300' : 'scale-110 opacity-0 duration-150'}`}>
+                <div onClick={(e_) => e_.stopPropagation()} className={`absolute  max-w-md p-6 bg-white  drop-shadow-lg ${openModal ? 'opacity-1 duration-300' : 'scale-110 opacity-0 duration-150'}`}>
                     <div className=' flex justify-end mb-5 text-[1.5rem] '>
                       <RxCross2  onClick={()=>setOpenModal(false)} className=' cursor-pointer ' />
                     </div>
@@ -48,7 +52,7 @@ export default function CarImageUpload() {
                         </div>
                       </div>
 
-                        <div className=' grid grid-cols-2 place-items-center gap-4 mt-6 '>
+                        <div className=' grid grid-cols-2 gap-4 mt-6 '>
                         <div className='  '>
                           <div className=' flex flex-col gap-2 '>
                             <h3 className=' text-[1.1rem] font-semibold '>Main Picture</h3>
