@@ -11,23 +11,26 @@ import toast from "react-hot-toast";
 import { useFormContext } from "@/context/FormContext";
 
 const Page = () => {
-
   const { formData, updateFormData } = useFormContext();
-  
-  
+
   const [isOpen1, setIsOpen1] = useState(false);
-  const [selectedValue1, setSelectedValue1] = useState(formData.carName ? formData.carName : "Toyota");
+  const [selectedValue1, setSelectedValue1] = useState(
+    formData.carName ? formData.carName : "Toyota"
+  );
   const options1 = ["Tesla", "Tata", "Suzuki"];
   console.log(selectedValue1);
-  console.log('rentcar',formData.carName);
-  
+  console.log("rentcar", formData.carName);
 
   const [isOpen2, setIsOpen2] = useState(false);
-  const [selectedValue2, setSelectedValue2] = useState(formData.carModel ? formData.carModel : "Camry");
+  const [selectedValue2, setSelectedValue2] = useState(
+    formData.carModel ? formData.carModel : "Camry"
+  );
   const options2 = ["Crafter van", "Cross polo", "Derby"];
 
   const [isOpen3, setIsOpen3] = useState(false);
-  const [selectedValue3, setSelectedValue3] = useState( formData.yearOfRegistation ? formData.yearOfRegistation : "2024");
+  const [selectedValue3, setSelectedValue3] = useState(
+    formData.yearOfRegistation ? formData.yearOfRegistation : "2024"
+  );
   const options3 = [
     "2024",
     "2023",
@@ -53,7 +56,9 @@ const Page = () => {
   ];
 
   const [isOpen4, setIsOpen4] = useState(false);
-  const [selectedValue4, setSelectedValue4] = useState(formData.mileage ? formData.mileage : "0-25,000 mi");
+  const [selectedValue4, setSelectedValue4] = useState(
+    formData.mileage ? formData.mileage : "0-25,000 mi"
+  );
   const options4 = [
     "0-25,000 mi",
     "25-50,000 mi",
@@ -87,12 +92,11 @@ const Page = () => {
 
   const [query, setQuery] = useState("");
   const [cities, setCities] = useState([]);
-  const [city, setCity] = useState(formData?.city ? formData?.city : '')
+  const [city, setCity] = useState(formData?.city ? formData?.city : "");
 
   const handleInputChange = async (e) => {
     const searchValue = e.target.value;
-    
-    
+
     setQuery(searchValue);
 
     if (searchValue.length > 2) {
@@ -154,7 +158,6 @@ const Page = () => {
     fetchCarModels();
   }, []);
 
-
   // const [token, setToken] = useState(null);
 
   // useEffect(() => {
@@ -165,14 +168,11 @@ const Page = () => {
   // }, []);
   // const router = useRouter();
   // console.log(token);
-  
 
   // updateFormData('carName', "lambo")
 
   console.log(formData);
-  console.log("qu",query);
-  
-  
+  console.log("qu", query);
 
   // console.log(carModels);
 
@@ -190,15 +190,17 @@ const Page = () => {
               {/* dropdown - btn */}
               <div
                 onClick={() => {
-                  setIsOpen1(!isOpen1)
-                  setIsOpen2(false)
-                  setIsOpen3(false)
-                  setIsOpen4(false)
-                  setIsOpen5(false)
+                  setIsOpen1(!isOpen1);
+                  setIsOpen2(false);
+                  setIsOpen3(false);
+                  setIsOpen4(false);
+                  setIsOpen5(false);
                 }}
                 className=" flex w-full items-center justify-between rounded-xl bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{formData?.carName}</h1>
+                <h1 className="font-medium text-gray-600">
+                  {formData?.carName}
+                </h1>
                 <svg
                   className={`${
                     isOpen1 ? "-rotate-180" : "rotate-0"
@@ -238,7 +240,7 @@ const Page = () => {
                     key={idx}
                     onClick={(e) => {
                       setSelectedValue1(e.target.textContent);
-                      updateFormData('carName', e.target.textContent)
+                      updateFormData("carName", e.target.textContent);
                       setIsOpen1(false);
                     }}
                     className="px-6 py-2 font-semibold hover:bg-green-400"
@@ -253,15 +255,17 @@ const Page = () => {
               {/* dropdown - btn */}
               <div
                 onClick={() => {
-                  setIsOpen2(!isOpen2)
-                  setIsOpen1(false)
-                  setIsOpen3(false)
-                  setIsOpen4(false)
-                  setIsOpen5(false)
+                  setIsOpen2(!isOpen2);
+                  setIsOpen1(false);
+                  setIsOpen3(false);
+                  setIsOpen4(false);
+                  setIsOpen5(false);
                 }}
                 className=" flex w-full items-center justify-between rounded-xl bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{formData?.carModel}</h1>
+                <h1 className="font-medium text-gray-600">
+                  {formData?.carModel}
+                </h1>
                 <svg
                   className={`${
                     isOpen2 ? "-rotate-180" : "rotate-0"
@@ -301,7 +305,7 @@ const Page = () => {
                     key={idx}
                     onClick={(e) => {
                       setSelectedValue2(e.target.textContent);
-                      updateFormData('carModel', e.target.textContent)
+                      updateFormData("carModel", e.target.textContent);
                       setIsOpen2(false);
                     }}
                     className="px-6 py-2 text-[#fff] font-semibold hover:bg-green-400"
@@ -318,15 +322,17 @@ const Page = () => {
               {/* dropdown - btn */}
               <div
                 onClick={() => {
-                  setIsOpen3(!isOpen3)
-                  setIsOpen1(false)
-                  setIsOpen2(false)
-                  setIsOpen4(false)
-                  setIsOpen5(false)
+                  setIsOpen3(!isOpen3);
+                  setIsOpen1(false);
+                  setIsOpen2(false);
+                  setIsOpen4(false);
+                  setIsOpen5(false);
                 }}
                 className=" flex w-full items-center justify-between rounded-xl bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{formData?.yearOfRegistation}</h1>
+                <h1 className="font-medium text-gray-600">
+                  {formData?.yearOfRegistation}
+                </h1>
                 <svg
                   className={`${
                     isOpen3 ? "-rotate-180" : "rotate-0"
@@ -366,7 +372,7 @@ const Page = () => {
                     key={idx}
                     onClick={(e) => {
                       setSelectedValue3(e.target.textContent);
-                      updateFormData('yearOfRegistation', e.target.textContent)
+                      updateFormData("yearOfRegistation", e.target.textContent);
                       setIsOpen3(false);
                     }}
                     className="px-6 py-1 font-semibold hover:bg-green-400"
@@ -381,15 +387,17 @@ const Page = () => {
               {/* dropdown - btn */}
               <div
                 onClick={() => {
-                  setIsOpen4(!isOpen4)
-                  setIsOpen1(false)
-                  setIsOpen2(false)
-                  setIsOpen3(false)
-                  setIsOpen5(false)
+                  setIsOpen4(!isOpen4);
+                  setIsOpen1(false);
+                  setIsOpen2(false);
+                  setIsOpen3(false);
+                  setIsOpen5(false);
                 }}
                 className=" flex w-full items-center justify-between rounded-md bg-white px-6 py-2 border"
               >
-                <h1 className="font-medium text-gray-600">{formData?.mileage}</h1>
+                <h1 className="font-medium text-gray-600">
+                  {formData?.mileage}
+                </h1>
                 <svg
                   className={`${
                     isOpen4 ? "-rotate-180" : "rotate-0"
@@ -429,7 +437,7 @@ const Page = () => {
                     key={idx}
                     onClick={(e) => {
                       setSelectedValue4(e.target.textContent);
-                      updateFormData('mileage', e.target.textContent)
+                      updateFormData("mileage", e.target.textContent);
                       setIsOpen4(false);
                     }}
                     className="px-6 py-2 text-[#fff] font-semibold hover:bg-green-400"
@@ -465,8 +473,8 @@ const Page = () => {
                     key={idx}
                     onClick={(e) => {
                       setQuery(e.target.textContent);
-                      updateFormData("city", e.target.textContent)
-                      setCity(e.target.textContent)
+                      updateFormData("city", e.target.textContent);
+                      setCity(e.target.textContent);
                       setIsOpen5(false);
                     }}
                     className="px-6 py-2 text-[#fff] font-semibold hover:bg-green-400"
@@ -478,7 +486,7 @@ const Page = () => {
             </div>
           </div>
 
-          {token ? 
+          {token ? (
             formData?.city ? (
               <Link href={"rentcar/steps/model"}>
                 <button className=" w-full text-[#fff] font-semibold bg-green-500 rounded-lg py-2 ">
@@ -486,13 +494,13 @@ const Page = () => {
                 </button>
               </Link>
             ) : (
-              <div  onClick={() => toast.error("Location is required")}>
+              <div onClick={() => toast.error("Location is required")}>
                 <button className=" w-full text-[#fff] font-semibold bg-green-500 rounded-lg py-2 ">
                   Next
                 </button>
               </div>
             )
-          : (
+          ) : (
             <div onClick={() => toast.error("Sign in please")}>
               <button className=" w-full text-[#fff] font-semibold bg-green-500 rounded-lg py-2 ">
                 Next

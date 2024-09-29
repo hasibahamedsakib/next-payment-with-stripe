@@ -102,7 +102,7 @@ const Page = () => {
               Previous
             </button>
           </Link>
-          <Link href={"parking-address"} className=" w-full ">
+          <Link href={"set-price"} className=" w-full ">
             <button className=" bg-green-500 rounded-md w-full font-semibold text-[#fff] py-2 ">
               Next
             </button>

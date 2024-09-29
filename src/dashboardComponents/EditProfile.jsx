@@ -31,6 +31,11 @@ const EditProfile = ({userData}) => {
   const [previewUrl, setPreviewUrl] = useState('');
   const [imageUploadStatus, setImageUploadStatus] = useState(false);
 
+  const [isOpen1, setIsOpen1] = useState(false);
+  const [selectedValue1, setSelectedValue1] = useState( userData?.countryWithCode ? userData?.countryWithCode : "AF(+93)");
+  const [countryCode, setCountryCode] = useState(userData?.countryCode ? userData?.countryCode : '+93')
+  const [number, setNumber] = useState(userData?.number ? userData?.number : 0)
+
   const router = useRouter()
 
 
@@ -103,6 +108,21 @@ const EditProfile = ({userData}) => {
 
   const fileRef = useRef(null);
 
+  const [countryCodes, setCountryCodes] = useState([]);
+
+  useEffect(() => {
+    const fetchCountryCodes = async () => {
+      try {
+        const response = await axios.get("/api/data/country");
+        setCountryCodes(response.data.data);
+      } catch (error) {
+        console.error("Error fetching country codes:", error);
+      }
+    };
+
+    fetchCountryCodes();
+  }, []);
+
 
 
   
@@ -111,6 +131,10 @@ console.log('how how');
   // console.log(userData);
 
   const handleSubmit = async () => {
+
+    const pNumber = number.toString()
+    setPhoneNumber(countryCode+pNumber)
+    console.log(phoneNumber);
 
     try {
       setLoading(true);
@@ -344,19 +368,108 @@ console.log('how how');
               className=" outline-none px-2 py-2 rounded-md bg-green-500/5 "
             />
           </div>
-          <div className=" flex flex-col gap-1 ">
-            <label htmlFor="" className=" font-light ">
-              Number
-            </label>
+
+
+
+
+
+
+
+          <div className=' flex flex-col gap-1 '>
+          <label className=" text-gray-600  ml-2 " htmlFor="">
+          Phone No.
+        </label>
+        <div className=" flex items-center gap-5 ">
+          <div className=" relative w-[40%] ">
+            <div className=" flex flex-col gap-1 ">
+              <div
+                onClick={() => setIsOpen1(!isOpen1)}
+                className=" flex w-full items-center justify-between rounded-md bg-green-500/5 px-2 py-2 border"
+              >
+                <h1 className="font-medium text-gray-600">{userData?.countryWithCode ? userData?.countryWithCode : selectedValue1}</h1>
+                <svg
+                  className={`${
+                    isOpen1 ? "-rotate-180" : "rotate-0"
+                  } duration-300`}
+                  width={25}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g strokeWidth="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M7 10L12 15L17 10"
+                      stroke="#4B5563"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>{" "}
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <div
+              className={`${
+                isOpen1
+                  ? "visible top-10 opacity-100"
+                  : "invisible top-4 opacity-0"
+              } absolute my-4 w-full h-[400px] overflow-y-scroll no-scrollbar  z-50 rounded-md bg-green-500 py-4 border duration-300`}
+            >
+              {countryCodes?.map((country, idx) => (
+                <div
+                  key={idx}
+                  onClick={(e) => {
+                    setSelectedValue1(e.target.textContent);
+                    setCountryCode(country.code);
+                    
+                    // updateFormData("countryCode", e.target.textContent);
+                    // updateFormData("phoneNumber", country.code+number);
+                    setIsOpen1(false);
+                  }}
+                  className="px-2 py-2 text-[#fff] font-semibold hover:bg-green-400"
+                >
+                  {country.shortForm}({country.code})
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className=" w-full ">
             <input
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              defaultValue={userData?.phoneNumber}
               type="number"
-              name=""
-              id=""
-              className=" outline-none px-2 py-2 rounded-md bg-green-500/5 "
+              defaultValue={userData?.number}
+              onChange={(e) => {
+                setNumber(e.target.value);
+                
+                // updateFormData("number", e.target.value);
+                // updateFormData("phoneNumber", code+e.target.value);
+              }}
+              required
+              placeholder="Enter your contact no."
+              className=" w-full outline-none border bg-green-500/5 rounded-md py-2 px-3  "
             />
           </div>
+        </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
 

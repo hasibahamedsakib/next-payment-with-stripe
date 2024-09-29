@@ -98,7 +98,7 @@ const Account = ({params}) => {
         
       }
       {
-        value === 'PAYMENTSETTING' && <PaymentSetting />
+        value === 'PAYMENTSETTING' && <PaymentSetting  userData={userData}  />
         
       }
        </div>

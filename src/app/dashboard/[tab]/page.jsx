@@ -12,7 +12,9 @@ import Link from 'next/link';
 const Page = ({params}) => {
 
     // const router = useRouter();
-  const { tab, subtab } = params;
+  const { tab, car } = params;
+  console.log(tab, car);
+  
 
     // console.log(tab, subtab);
 
@@ -46,9 +48,9 @@ const Page = ({params}) => {
         {
             tab === 'rentals' && <Rentals />
         }
-        {
+        {/* {
             tab === 'cars' && <Cars />
-        }
+        } */}
         {
             tab === 'performance' && <Performance />
         }

@@ -50,7 +50,12 @@ export async function POST(req) {
       aboutMe,
       oldPassword,
       newPassword,
-      profileImg
+      profileImg,
+      countryCode,
+      countryWithCode,
+      number,
+      country,
+      ssnNumber
     } = reqBody;
 
     console.log(password, userId);
@@ -136,6 +141,11 @@ export async function POST(req) {
     if (aboutMe) updateData.aboutMe = aboutMe;
     if (phoneNumber) updateData.phoneNumber = phoneNumber;
     if (profileImg) updateData.profileImg = profileImg;
+    if (countryCode) updateData.countryCode = countryCode;
+    if (countryWithCode) updateData.countryWithCode = countryWithCode;
+    if (number) updateData.number = number;
+    if (country) updateData.country = country;
+    if (ssnNumber) updateData.ssnNumber = ssnNumber;
 
     // Handle file upload
     // if (req.file && req.file.path) {

@@ -9,7 +9,7 @@ export const getTokenData = (req) => {
         // console.log(token);
         // console.log(`tokened: ${token}`);
 
-        console.log('token',token)
+        // console.log('token',token)
 
 
         if (!token) {

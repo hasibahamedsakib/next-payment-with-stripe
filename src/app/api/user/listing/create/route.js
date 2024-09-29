@@ -27,9 +27,12 @@ export async function POST(req) {
       phoneNumber,
       availableWeekends,
       meetingPoint,
+      wellMaintained,
+      uptodate,
+      perDayPrice
     } = reqBody;
 
-    console.log(userId);
+    console.log("price",perDayPrice);
     
 
 
@@ -63,6 +66,9 @@ export async function POST(req) {
       phoneNumber,
       availableWeekends,
       meetingPoint,
+      wellMaintained,
+      uptodate,
+      perDayPrice
   });
 
   await newListing.save();

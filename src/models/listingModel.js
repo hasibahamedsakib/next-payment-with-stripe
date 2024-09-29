@@ -93,6 +93,18 @@ const listingSchema = new mongoose.Schema({
         type: String,
         
     },
+    uptodate: {
+        type: String,
+        
+    },
+    wellMaintained: {
+        type: String,
+        
+    },
+    perDayPrice: {
+        type: Number,
+        
+    },
 
 }, {timestamps: true})
 

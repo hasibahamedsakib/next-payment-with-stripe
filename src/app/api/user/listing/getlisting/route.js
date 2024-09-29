@@ -11,25 +11,25 @@ export async function POST(req) {
 
         
         
-        const { userId } = await req.json()
+        const { plateNumber } = await req.json()
         
 
-        const listings = await Listing.find({userId})
+        const listing = await Listing.findOne({plateNumber})
 
         // console.log("listings", listings);
         
 
-        if(listings.length <1){
+        if(!listing){
             return NextResponse.json({
                 success: false,
-                message: "No listing"
+                message: "Listing not found"
             })
         }
 
         return NextResponse.json({
             success: true,
             message: "Listing found successfully",
-            data: listings
+            data: listing
         })
 
 

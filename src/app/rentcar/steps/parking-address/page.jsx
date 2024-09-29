@@ -149,7 +149,8 @@ const Page = () => {
             </label>
             <input
               type="text"
-              value={address}
+              defaultValue={formData?.meetingPoint}
+              // value={address}
               onChange={handleInputChange}
               placeholder="Enter address"
               className=" bg-[#fff] px-4 py-2 rounded-md outline-none border font-semibold placeholder:text-gray-600 "
@@ -196,7 +197,7 @@ const Page = () => {
         </div>
 
         <div className=" flex items-center gap-5 mt-10 justify-between ">
-          <Link href={"well-maintained"} className="  w-[40%]  md:w-[20%] ">
+          <Link href={"set-price"} className="  w-[40%]  md:w-[20%] ">
             <button className=" bg-green-500 w-full py-2 font-semibold rounded-md text-[#fff] ">
               Previous
             </button>

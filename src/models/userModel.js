@@ -48,6 +48,21 @@ const userSchema = new mongoose.Schema({
     phoneNumber: {
         type: String
     },
+    countryCode: {
+        type: String
+    },
+    countryWithCode: {
+        type: String
+    },
+    number: {
+        type: String
+    },
+    country: {
+        type: String
+    },
+    ssnNumber: {
+        type: Number
+    },
     addressLine1:{
         type: String
     },
