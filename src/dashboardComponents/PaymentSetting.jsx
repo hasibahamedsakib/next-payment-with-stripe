@@ -116,7 +116,7 @@ const PaymentSetting = ({userData}) => {
 
   return (
     <div className=' py-4 px-2 lg:px-4 '>
-      <p className=' text-gray-600 font-semibold '>Don't forget to complete your payment settings so you can receive your payments!</p>
+      <p className=' text-gray-600 font-semibold '>Don&apos;t forget to complete your payment settings so you can receive your payments!</p>
       <form onSubmit={handleSubmit} className=' mt-10 '>
         <h3 className=' text-[1.4rem] font-semibold '>Billing information</h3>
         <div className=" mt-5 flex flex-col gap-4 ">
