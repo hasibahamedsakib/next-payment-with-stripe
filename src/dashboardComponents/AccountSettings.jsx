@@ -150,9 +150,11 @@ const deleteAccount = async () => {
 
           <div>
             <button onClick={handlePasswordChange} disabled={changePasswordStatus} className=' bg-green-500 py-2 w-full rounded-md text-[#fff] active:scale-110 '>
+
               {
                 changePasswordStatus ? "Loading" : "Change your Password"
               }
+              
             </button>
           </div>
           

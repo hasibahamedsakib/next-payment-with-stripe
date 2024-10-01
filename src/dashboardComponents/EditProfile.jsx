@@ -40,46 +40,21 @@ const EditProfile = ({userData}) => {
 
 
   const handleImageChange = (e) => {
-    // const file = e.target.files[0];
-    // if (file) {
-    //   setImage(file);
-    //   setPreviewUrl(URL.createObjectURL(file)); 
-    // }
+    
 
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       const reader = new FileReader();
-      reader.readAsDataURL(selectedFile); // Convert file to base64 string
+      reader.readAsDataURL(selectedFile); 
       reader.onloadend = () => {
-        setFile(reader.result); // Set the base64 string to state
+        setFile(reader.result); 
       };
          setPreviewUrl(URL.createObjectURL(selectedFile)); 
     }
   };
-// console.log('hello');
+
 
   const handleImageSubmit = async (e) => {
-    // e.preventDefault()
-    // setImageUploadStatus(true)
-    // if (!image) return;
-
-    // const formData = new FormData();
-    // formData.append('image', image);
-
-    // try {
-    //   const response = await axios.post('/api/user/uploadimage', formData, {
-    //     headers: { 'Content-Type': 'multipart/form-data' },
-    //   });
-    //   console.log(response);
-      
-    //   setImageUploadedUrl(response.data.imageUrl);
-    //   setImageUploadStatus(false)
-    //   console.log(response.data.imageUrl);
-    // } catch (error) {
-    //   console.error('Image Upload failed:', error);
-    //   setImageUploadStatus(false);
-    // }
-    // console.log('uploading start');
     
     setImageUploadStatus(true)
     try {

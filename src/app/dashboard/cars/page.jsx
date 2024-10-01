@@ -52,7 +52,7 @@ if (token) {
 }
 
   const data = await res.json();
-  const listings = data.data
+  const listings = data?.data
   // console.log("car Data",listings);
   
 
@@ -78,7 +78,7 @@ if (token) {
 
 
       <div className=" mt-8 border rounded-md h-full min-h-[30rem] ">
-      {listings || listings.length > 0 ? (
+      {listings && listings?.length > 0 ? (
         <div className=" p-7 flex flex-col gap-4 ">
           {
             listings.map((listing, idx)=> (
@@ -94,11 +94,11 @@ if (token) {
                 </div>
                 </div>
                 
-                <div className=" flex gap-4 ">
-                <div>
-                  <Image src={listing?.image} alt="Car Image" className=" object-cover " width={200} height={400}  />
+                <div className=" flex gap-4  ">
+                <div className=' relative h-[6rem] sm:h-[8rem] w-[13rem] '>
+                  <Image src={listing?.image1 ? listing?.image1 : listing?.image} alt="Car Image" className="w-full h-full object-cover rounded-md " loading='lazy' fill  />
                 </div>
-                <div className=" flex flex-col gap-2 ">
+                <div className=" flex-1 flex flex-col gap-2 ">
                 <div className=" flex items-center gap-2 md:text-[1.4rem] leading-tight text-[1.2rem] lg:text-[1.6rem] ">
                   <h3>{listing?.carName}</h3>
                   <h3>{listing?.carModel}</h3>
@@ -136,6 +136,7 @@ if (token) {
                 src={DashboardIcon1}
                 alt="requests icon"
                 className=" w-[15rem] h-full object-cover "
+                loading='lazy'
               />
             </div>
             <div>

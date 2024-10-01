@@ -12,6 +12,13 @@ export async function POST(req) {
         
         
         const { plateNumber } = await req.json()
+
+        if(!plateNumber){
+            return NextResponse.json({
+                success: false,
+                message: "plate number is not given"
+            })
+        }
         
 
         const listing = await Listing.findOne({plateNumber})
