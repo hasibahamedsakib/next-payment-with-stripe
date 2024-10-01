@@ -1,57 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-*{
+/* *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
+} */
 
-.menuOpen{
+.menuOpen {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-
 }
-.nMenuOpen{
+.nMenuOpen {
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-
 }
-.selectOpen{
+.selectOpen {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-
 }
-.selectClose{
+.selectClose {
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-
 }
 
-.nCardTypeHover1{
+.nCardTypeHover1 {
   clip-path: polygon(100% 0, 100% 0, 0 100%, 0 100%);
-
 }
-.nCardTypeHover2{
+.nCardTypeHover2 {
   clip-path: polygon(0 0, 0 0, 100% 100%, 100% 100%);
-
 }
-.cardTypeHover1{
+.cardTypeHover1 {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-
 }
-.cardTypeHover2{
+.cardTypeHover2 {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-
 }
 
-.blogShape{
+.blogShape {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 20% 81%, 0 80%);
-
 }
 
 .slick-slide > div {
   margin: 0 5px;
 }
-
-
 
 /* Parent element with custom scrollbar line */
 .scrollbar-line {
@@ -63,7 +51,7 @@
 
 /* Create the scrollbar line */
 .scrollbar-line::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -82,7 +70,6 @@
 .scrollbar-line {
   scrollbar-width: none; /* For Firefox */
 }
-
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
