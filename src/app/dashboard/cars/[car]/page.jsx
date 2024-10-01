@@ -114,12 +114,14 @@ const page = async ({ params }) => {
                     <MdCameraEnhance className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
                     <span className=" font-semibold ">Add Photos</span>
                   </Link>
-                  <div className=" py-6 border-b hover:bg-green-500/10 px-4 flex items-center gap-2 ">
+                  <Link
+                  href={`/dashboard/cars/${listing?.plateNumber}/calender`}
+                  className=" py-6 border-b hover:bg-green-500/10 px-4 flex items-center gap-2 ">
                     <FaCheck className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
                     <span className=" font-semibold ">
                       Update your calender
                     </span>
-                  </div>
+                  </Link>
                   <Link
                     href={"/dashboard/account"}
                     className=" py-6 md:border-none hover:bg-green-500/10 border-b px-4 flex items-center gap-2 "
