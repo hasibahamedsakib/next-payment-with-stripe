@@ -8,7 +8,7 @@ const Requests = () => {
         <div className=' flex items-center justify-center mt-[8rem] w-full '>
         <div className=' flex flex-col justify-center items-center text-center '>
         <div>
-            <Image src={DashboardIcon1} alt='requests icon' className=' w-[15rem] h-full object-cover ' />
+            <Image src={DashboardIcon1} alt='requests icon' loading='lazy' className=' w-[15rem] h-full object-cover ' />
         </div>
         <div>
             <h3 className=' text-[1.4rem] font-semibold '>No booking requests</h3>

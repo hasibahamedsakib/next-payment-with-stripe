@@ -9,7 +9,7 @@ const PaymentMethods = () => {
       <div className=' flex items-center justify-center  w-full '>
         <div className=' flex flex-col justify-center mt-[3rem] items-center text-center '>
         <div>
-            <Image src={DashboardIcon4} alt='requests icon' className=' w-[15rem] h-full object-cover ' />
+            <Image src={DashboardIcon4} alt='requests icon' loading='lazy' className=' w-[15rem] h-full object-cover ' />
         </div>
         <div>
             <h3 className=' text-[1.4rem] font-semibold '>You don&apos;t have a transaction yet on Move Around.</h3>
