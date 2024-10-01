@@ -83,6 +83,14 @@ const Page = async ({ params }) => {
         </div>
 
         <div className=" mt-6 ">
+        <div>
+              <div className=" flex items-center gap-4 text-[1.8rem] font-semibold mb-5 ">
+                <h3>{listing?.carName}</h3>
+                <h3>{listing?.carModel}</h3>
+                <h3>{listing?.yearOfRegistation}</h3>
+              </div>
+              <span>Number plate: {listing?.plateNumber}</span>
+            </div>
           <h2 className=" font-semibold text-[1.3rem] ">
             Picture of the vehicle
           </h2>
