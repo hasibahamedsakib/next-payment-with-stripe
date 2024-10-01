@@ -1,22 +1,38 @@
-"use client";
-import { useState } from "react";
-import { RxCross2 } from "react-icons/rx";
 import { FaCheck } from "react-icons/fa6";
-import { LuImagePlus } from "react-icons/lu";
-import Image from "next/image";
-import CarImg1 from "@/public/images/CarMainImg.webp";
-import CarImg2 from "@/public/images/CarSideImg.webp";
-import CarImg3 from "@/public/images/CarBackImg.webp";
-import CarImg4 from "@/public/images/CarInnerImg.webp";
 import React from "react";
 import Link from "next/link";
+import CarImageUpload from "@/dashboardComponents/CarImageUpload";
 
-const Page = ({ params }) => {
+const Page = async ({ params }) => {
   // const [openModal, setOpenModal] = useState(false);
   const { tab, car } = params;
+
+
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const res = await fetch(`${apiUrl}/api/user/listing/getlisting`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ plateNumber: car }),
+    cache: 'no-store',
+  });
+
+  if (!res.ok) {
+    console.log("Failed to fetch data");
+  }
+
+  const data = await res.json()
+  const listing = data.data
+
+  // console.log(listing.image1)
+  
+
+
   return (
     <div>
-      <div className={`  max-w-[1250px] mx-auto p-6 `}>
+      <div className={`  max-w-[1250px] mx-auto px-3 py-6 `}>
         <div className=" flex items-center text-xl lg:overflow-x-hidden overflow-x-scroll overflow-hidden  ">
           <Link
             href={"/dashboard/requests"}
@@ -96,91 +112,8 @@ const Page = ({ params }) => {
             </div>
           </div>
 
-          <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 ">
-            <div className="  ">
-              <div className=" flex flex-col gap-2 ">
-                <h3 className=" text-[1.1rem] font-semibold ">Main Picture</h3>
-                <div className=" flex ">
-                  <div className=" flex-1 flex items-center justify-center text-lg md:text-2xl border ">
-                    <LuImagePlus />
-                  </div>
-                  <div className=" flex-1 lg:h-[12rem] ">
-                    <Image
-                      src={CarImg1}
-                      alt="car main img "
-                      className="  object-cover w-full h-full "
-                     
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="  ">
-              <div className=" flex flex-col gap-2 ">
-                <h3 className=" text-[1.1rem] font-semibold ">Side Picture</h3>
-                <div className=" flex ">
-                  <div className=" flex-1 flex items-center justify-center text-lg md:text-2xl border ">
-                    <LuImagePlus />
-                  </div>
-                  <div className=" flex-1 border lg:h-[12rem] ">
-                    <Image
-                      src={CarImg2}
-                      alt="car main img "
-                      className="  object-cover w-full h-full "
-                      
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" ">
-              <div className=" flex flex-col gap-2 ">
-                <h3 className=" text-[1.1rem] font-semibold ">Back Picture</h3>
-                <div className=" flex ">
-                  <div className=" flex-1 flex items-center justify-center text-lg md:text-2xl border ">
-                    <LuImagePlus />
-                  </div>
-                  <div className=" flex-1 border lg:h-[12rem] ">
-                    <Image
-                      src={CarImg3}
-                      alt="car main img "
-                      className="  object-cover w-full h-full "
-                     
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="  ">
-              <div className=" flex flex-col gap-2 ">
-                <h3 className=" text-[1.1rem] font-semibold ">
-                  Inner side Picture
-                </h3>
-                <div className=" flex ">
-                  <div className="flex-1  flex items-center justify-center text-lg md:text-2xl border ">
-                    <LuImagePlus />
-                  </div>
-                  <div className=" flex-1 lg:h-[12rem] ">
-                    <Image
-                      src={CarImg4}
-                      alt="car main img "
-                      className="  object-cover w-full h-full   "
-                      
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className=" mt-5 flex items-center gap-3 ">
-
-            <Link href={`/dashboard/cars/${car}`} className="w-[30%] bg-green-500 text-[#fff] text-sm font-semibold text-center py-2 rounded-md ">
-              Previous
-            </Link>
-            <button className=" bg-green-500 text-[#fff] text-sm font-semibold py-2 w-full rounded-md ">
-              Save
-            </button>
-          </div>
+            <CarImageUpload car={car} cImage1={listing?.image1 ? listing?.image1 : null} cImage2={listing?.image2 ? listing?.image2 : null} cImage3={listing?.image3 ? listing?.image3 : null} cImage4={listing?.image4 ? listing?.image4 : null} />
+          
         </div>
       </div>
     </div>
