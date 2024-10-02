@@ -1,37 +1,64 @@
+"use client";
 import Image from "next/image";
 import BlogImg1 from "@/public/images/BlogImg2.webp";
+
+import { useEffect, useState } from "react";
+
 const SearchPage = () => {
+  const [location, setLocation] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  useEffect(() => {
+    // Only run the code on the client side
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+
+      const pickup = params.get("pickup");
+      const start = params.get("startDate");
+      const end = params.get("endDate");
+      setLocation(pickup);
+      setStartDate(start);
+      setEndDate(end);
+      // Extract the query parameters
+    }
+  }, []);
+  console.log({ location, startDate, endDate });
+
   return (
-    <section className="max-w-[1250px] mx-auto px-3">
+    <section className="max-w-[1250px] mx-auto px-3 py-6">
       {/* search box header */}
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Vehicle Listings</h1>
-        <div className="flex space-x-4">
+        <div className="flex space-x-2">
           <input
             type="text"
             placeholder="Search..."
-            className="border rounded p-2"
+            className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-6 py-2 outline-none font-semibold text-gray-600  w-[390px]"
           />
-          <button className="bg-blue-500 text-white rounded p-2">Search</button>
+          <button className="bg-green-500 hover:bg-green-700 transition-all duration-300 text-white rounded px-4 py-2">
+            Search
+          </button>
         </div>
       </header>
       {/* filtering options */}
       <div className="flex justify-between mb-4">
         <div>
-          <span>40 results out of 390</span>
+          <span className="font-semibold text-gray-600">
+            40 results out of 390
+          </span>
         </div>
         <div className="flex space-x-4">
-          <select className="border rounded p-2">
+          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Total price</option>
             <option>Lowest to Highest</option>
             <option>Highest to Lowest</option>
           </select>
-          <select className="border rounded p-2">
+          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Vehicle type</option>
             <option>Car</option>
             <option>Truck</option>
           </select>
-          <select className="border rounded p-2">
+          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Pickup method</option>
             <option>Contactless</option>
             <option>In-person</option>
@@ -39,10 +66,10 @@ const SearchPage = () => {
         </div>
       </div>
       <div className="grid items-center justify-between gap-4 grid-cols-4">
-        <div className="col-span-2  w-full ">
+        <div className="col-span-2 w-full space-y-3">
           {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> */}
           {/* Vehicle Card 1 */}
-          <div className=" flex items-center justify-between gap-4 border rounded shadow-sm">
+          <div className=" flex items-start justify-between gap-4 border rounded shadow-sm">
             <Image
               src={BlogImg1}
               alt="Dodge Grand Caravan"
@@ -50,16 +77,21 @@ const SearchPage = () => {
               loading="lazy"
               draggable={false}
             />
-            <div className="p-2">
-              <h2 className="text-[1.25em] font-semibold">
+            <div className="py-2 pr-5">
+              <h2 className="text-lg font-semibold text-gray-700 leading-7 pt-2">
                 Dodge Grand Caravan American Value Package 2014
               </h2>
-              <p className="text-gray-600">Rating: 4.09 (348 reviews)</p>
-              <p className="text-xl font-bold">$1,427</p>
-              <p>For 23 days, 1 hr, 30 min</p>
+              <p className="text-gray-600 leading-7">
+                Rating: 4.09 (348 reviews)
+              </p>
+              <div className="text-end">
+                <p className="text-xl font-bold">$1,427</p>
+                {/* <p>For 23 days, 1 hr, 30 min</p> */}
+              </div>
             </div>
           </div>
-          <div className=" flex items-center justify-between gap-4 border rounded shadow-sm">
+
+          <div className=" flex items-start justify-between gap-4 border rounded shadow-sm">
             <Image
               src={BlogImg1}
               alt="Dodge Grand Caravan"
@@ -67,16 +99,20 @@ const SearchPage = () => {
               loading="lazy"
               draggable={false}
             />
-            <div className="p-2">
-              <h2 className="text-[1.25em] font-semibold">
+            <div className="py-2 pr-5">
+              <h2 className="text-lg font-semibold text-gray-700 leading-7 pt-2">
                 Dodge Grand Caravan American Value Package 2014
               </h2>
-              <p className="text-gray-600">Rating: 4.09 (348 reviews)</p>
-              <p className="text-xl font-bold">$1,427</p>
-              <p>For 23 days, 1 hr, 30 min</p>
+              <p className="text-gray-600 leading-7">
+                Rating: 4.09 (348 reviews)
+              </p>
+              <div className="text-end">
+                <p className="text-xl font-bold">$1,427</p>
+                {/* <p>For 23 days, 1 hr, 30 min</p> */}
+              </div>
             </div>
           </div>
-          <div className=" flex items-center justify-between gap-4 border rounded shadow-sm">
+          <div className=" flex items-start justify-between gap-4 border rounded shadow-sm">
             <Image
               src={BlogImg1}
               alt="Dodge Grand Caravan"
@@ -84,13 +120,17 @@ const SearchPage = () => {
               loading="lazy"
               draggable={false}
             />
-            <div className="p-2">
-              <h2 className="text-[1.25em] font-semibold">
+            <div className="py-2 pr-5">
+              <h2 className="text-lg font-semibold text-gray-700 leading-7 pt-2">
                 Dodge Grand Caravan American Value Package 2014
               </h2>
-              <p className="text-gray-600">Rating: 4.09 (348 reviews)</p>
-              <p className="text-xl font-bold">$1,427</p>
-              <p>For 23 days, 1 hr, 30 min</p>
+              <p className="text-gray-600 leading-7">
+                Rating: 4.09 (348 reviews)
+              </p>
+              <div className="text-end">
+                <p className="text-xl font-bold">$1,427</p>
+                {/* <p>For 23 days, 1 hr, 30 min</p> */}
+              </div>
             </div>
           </div>
 
