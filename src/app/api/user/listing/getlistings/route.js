@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/dbConfig/dbConfig";
 import Listing from "@/models/listingModel";
+// import '@/utils/updateListingsStatus'
 
 
 connectDB();

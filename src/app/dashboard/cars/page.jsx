@@ -47,6 +47,8 @@ const page = async ({ params }) => {
   const data = await res.json();
   const listings = data?.data;
   // console.log("car Data",listings);
+  // console.log(res)
+  
 
   return (
     <div>

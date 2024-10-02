@@ -94,7 +94,7 @@ const Page = () => {
         setTimeout(() => {
           window.location.reload()
         }, 3000);
-        router.push('/rentcar')
+        router.push('/dashboard/cars')
         
       }else{
         toast.error(res.data.message)

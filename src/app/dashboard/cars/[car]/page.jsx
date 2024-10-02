@@ -19,16 +19,17 @@ const page = async ({ params }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ plateNumber: car }),
+    cache: 'no-store',
   });
 
   if (!res.ok) {
     console.log("Failed to fetch data");
   }
 
-  const data = await res.json();
-  const listing = data.data;
+  const data = await res.json()
+  const listing = data.data
 
-  // console.log(listing)
+  console.log(listing)
 
   return (
     <>

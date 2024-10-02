@@ -23,7 +23,7 @@ const page = async ({ params }) => {
   }
 
   const data = await res.json()
-  const listing = data.data
+  const listing = data?.data
 
   return (
     <div>
@@ -86,7 +86,7 @@ const page = async ({ params }) => {
               <span>Number plate: {listing?.plateNumber}</span>
             </div>
 
-            <CarCalendar />
+            <CarCalendar car={car} listingId={listing?._id} />
         
       </div>
     </div>
