@@ -1,37 +1,95 @@
+"use client";
 import Image from "next/image";
 import BlogImg1 from "@/public/images/BlogImg2.webp";
+
+import { useEffect, useState } from "react";
+
 const SearchPage = () => {
+  const [location, setLocation] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [findListedCars, setListings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Only run the code on the client side
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+
+      const pickup = params.get("pickup");
+      const start = params.get("startDate");
+      const end = params.get("endDate");
+      setLocation(pickup);
+      setStartDate(start);
+      setEndDate(end);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+        const response = await fetch(`${apiUrl}/api/user/listing/getallcars`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ location }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch listings");
+        }
+
+        const data = await response.json();
+        setListings(data.allListedCars);
+        console.log("All list", data);
+
+        setIsLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    };
+
+    fetchListings();
+  }, [location]);
   return (
-    <section className="max-w-[1250px] mx-auto px-3">
+    <section className="max-w-[1250px] mx-auto px-3 py-6">
       {/* search box header */}
       <header className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Vehicle Listings</h1>
-        <div className="flex space-x-4">
+        <div className="flex space-x-2">
           <input
             type="text"
             placeholder="Search..."
-            className="border rounded p-2"
+            className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-6 py-2 outline-none font-semibold text-gray-600  w-[390px]"
           />
-          <button className="bg-blue-500 text-white rounded p-2">Search</button>
+          <button className="bg-green-500 hover:bg-green-700 transition-all duration-300 text-white rounded px-4 py-2">
+            Search
+          </button>
         </div>
       </header>
       {/* filtering options */}
       <div className="flex justify-between mb-4">
         <div>
-          <span>40 results out of 390</span>
+          <span className="font-semibold text-gray-600">
+            {findListedCars?.length || 0} results out of 390
+          </span>
         </div>
         <div className="flex space-x-4">
-          <select className="border rounded p-2">
+          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Total price</option>
             <option>Lowest to Highest</option>
             <option>Highest to Lowest</option>
           </select>
-          <select className="border rounded p-2">
+          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Vehicle type</option>
             <option>Car</option>
             <option>Truck</option>
           </select>
-          <select className="border rounded p-2">
+          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Pickup method</option>
             <option>Contactless</option>
             <option>In-person</option>
@@ -39,60 +97,47 @@ const SearchPage = () => {
         </div>
       </div>
       <div className="grid items-center justify-between gap-4 grid-cols-4">
-        <div className="col-span-2  w-full ">
+        <div className="col-span-2 w-full space-y-3">
           {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> */}
           {/* Vehicle Card 1 */}
-          <div className=" flex items-center justify-between gap-4 border rounded shadow-sm">
-            <Image
-              src={BlogImg1}
-              alt="Dodge Grand Caravan"
-              className="w-[300px] h-48 object-cover rounded-tl-md rounded-bl-md"
-              loading="lazy"
-              draggable={false}
-            />
-            <div className="p-2">
-              <h2 className="text-[1.25em] font-semibold">
-                Dodge Grand Caravan American Value Package 2014
-              </h2>
-              <p className="text-gray-600">Rating: 4.09 (348 reviews)</p>
-              <p className="text-xl font-bold">$1,427</p>
-              <p>For 23 days, 1 hr, 30 min</p>
-            </div>
-          </div>
-          <div className=" flex items-center justify-between gap-4 border rounded shadow-sm">
-            <Image
-              src={BlogImg1}
-              alt="Dodge Grand Caravan"
-              className="w-[300px] h-48 object-cover rounded-tl-md rounded-bl-md"
-              loading="lazy"
-              draggable={false}
-            />
-            <div className="p-2">
-              <h2 className="text-[1.25em] font-semibold">
-                Dodge Grand Caravan American Value Package 2014
-              </h2>
-              <p className="text-gray-600">Rating: 4.09 (348 reviews)</p>
-              <p className="text-xl font-bold">$1,427</p>
-              <p>For 23 days, 1 hr, 30 min</p>
-            </div>
-          </div>
-          <div className=" flex items-center justify-between gap-4 border rounded shadow-sm">
-            <Image
-              src={BlogImg1}
-              alt="Dodge Grand Caravan"
-              className="w-[300px] h-48 object-cover rounded-tl-md rounded-bl-md"
-              loading="lazy"
-              draggable={false}
-            />
-            <div className="p-2">
-              <h2 className="text-[1.25em] font-semibold">
-                Dodge Grand Caravan American Value Package 2014
-              </h2>
-              <p className="text-gray-600">Rating: 4.09 (348 reviews)</p>
-              <p className="text-xl font-bold">$1,427</p>
-              <p>For 23 days, 1 hr, 30 min</p>
-            </div>
-          </div>
+          {isLoading
+            ? "loading... please wait"
+            : findListedCars?.length >= 1
+            ? findListedCars?.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className=" flex items-start justify-between gap-4 border rounded shadow-sm"
+                  >
+                    <Image
+                      src={item?.image}
+                      alt="Dodge Grand Caravan"
+                      className="w-[300px] h-48 object-cover rounded-tl-md rounded-bl-md"
+                      loading="lazy"
+                      width={300}
+                      height={192}
+                      draggable={false}
+                    />
+                    <div className="py-2 pr-5">
+                      <h2 className="text-lg font-semibold text-gray-700 leading-7 pt-2">
+                        {item?.carName}_{item?.carModel}{" "}
+                        {item?.countryOfRegistation} - {item?.yearOfRegistation}
+                        {/* Dodge Grand Caravan American Value Package 2014 */}
+                      </h2>
+                      <p className="text-gray-600 leading-7">
+                        Rating: 4.09 (348 reviews)
+                      </p>
+                      <div className="text-end">
+                        <p className="text-xl font-bold">
+                          $ {item?.perDayPrice}
+                        </p>
+                        {/* <p>For 23 days, 1 hr, 30 min</p> */}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            : "Car Not found at this location"}
 
           {/* Add more vehicle cards as needed */}
           {/* </div> */}
