@@ -9,7 +9,7 @@ import Link from "next/link";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const CarCalendar = ({ car, listingId }) => {
+const CarCalendar = ({ car, listingId, listing }) => {
   const [toggle, setToggle] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(false)
 
@@ -57,6 +57,8 @@ const CarCalendar = ({ car, listingId }) => {
 
   // console.log(form);
   // console.log("listingid", listingId);
+  // console.log("reason",listing);
+  
   
 
   return (
@@ -82,6 +84,7 @@ const CarCalendar = ({ car, listingId }) => {
                   All Day
                 </label>
                 <button
+                type="button"
                   onClick={() => {
                     setToggle((prev) => !prev);
                     if (!toggle) {
@@ -120,6 +123,7 @@ const CarCalendar = ({ car, listingId }) => {
                     className="w-full bg-green-500/5 p-2 border rounded-md"
                     id="startDate"
                     required
+                    defaultValue={listing?.unavailability?.startDate}
                     onChange={handleChange}
                   />
                   {!toggle && (
@@ -129,6 +133,7 @@ const CarCalendar = ({ car, listingId }) => {
                       onChange={handleChange}
                       id="startTime"
                       required
+                      defaultValue={listing?.unavailability?.startTime}
                     />
                   )}
                 </div>
@@ -143,6 +148,7 @@ const CarCalendar = ({ car, listingId }) => {
                     id="endDate"
                     required
                     onChange={handleChange}
+                    defaultValue={listing?.unavailability?.endDate}
                   />
                   {!toggle && (
                     <input
@@ -151,6 +157,7 @@ const CarCalendar = ({ car, listingId }) => {
                       id="endTime"
                       required
                       onChange={handleChange}
+                      defaultValue={listing?.unavailability?.endTime}
                     />
                   )}
                 </div>
@@ -162,6 +169,7 @@ const CarCalendar = ({ car, listingId }) => {
                   id="reason"
                   onChange={handleChange}
                   required
+                  defaultValue={listing?.unavailability?.reason}
                   className="w-full p-2 bg-green-500/5 outline-none border rounded-md"
                 >
                   <option>Select reason</option>

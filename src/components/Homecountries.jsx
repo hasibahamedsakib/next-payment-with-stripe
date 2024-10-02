@@ -17,15 +17,15 @@ const Homecountries = () => {
         </div>
         <div className=' flex md:h-[20rem] gap-1 md:gap-3 md:flex-row flex-col '>
             <div className=' w-full md:w-[45%] overflow-hidden rounded-xl relative '>
-                <Image src={PlaceImg1} placeholder='blur' alt='Place image' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out ' />
+                <Image src={PlaceImg1} placeholder='blur' alt='Place image' loading='lazy' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out ' />
                 <div className=' absolute h-[5rem] bg-gradient-to-b from-transparent to-black w-full left-0 bottom-0 text-[#fff] text-[2rem] flex items-center justify-center '>Oslo</div>
             </div>
             <div className=' w-full md:w-[30%] overflow-hidden rounded-xl  relative '>
-                <Image src={PlaceImg2} placeholder='blur' alt='Place image' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
+                <Image src={PlaceImg2} placeholder='blur' alt='Place image' loading='lazy' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
                 <div className=' absolute h-[5rem] bg-gradient-to-b from-transparent to-black w-full left-0 bottom-0 text-[#fff] text-[2rem] flex items-center justify-center '>Østfold</div>
             </div>
             <div className=' w-full md:w-[30%] overflow-hidden rounded-xl  relative '>
-                <Image src={PlaceImg3} placeholder='blur' alt='Place image' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
+                <Image src={PlaceImg3} placeholder='blur' alt='Place image' loading='lazy' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
                 <div className=' absolute h-[5rem] bg-gradient-to-b from-transparent to-black w-full left-0 bottom-0 text-[#fff] text-[2rem] flex items-center justify-center '>
                 Akershus</div>
             </div>
@@ -37,12 +37,12 @@ const Homecountries = () => {
                 Las Vegas</div>
             </div> */}
             <div className='  w-full md:w-[50%] overflow-hidden rounded-xl  relative '>
-                <Image src={PlaceImg4} placeholder='blur' alt='Place image' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
+                <Image src={PlaceImg4} placeholder='blur' alt='Place image' loading='lazy' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
                 <div className=' absolute h-[5rem] bg-gradient-to-b from-transparent to-black w-full left-0 bottom-0 text-[#fff] text-[2rem] flex items-center justify-center '>
                 Buskerud</div>
             </div>
             <div className='  w-full md:w-[50%] overflow-hidden rounded-xl  relative '>
-                <Image src={PlaceImg5} placeholder='blur' alt='Place image' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
+                <Image src={PlaceImg5} placeholder='blur' alt='Place image' loading='lazy' className=' h-full w-full object-cover rounded-xl hover:scale-110  transition-all duration-300 ease-in-out  ' />
                 <div className=' absolute h-[5rem] bg-gradient-to-b from-transparent to-black w-full left-0 bottom-0 text-[#fff] text-[2rem] flex items-center justify-center '>
                 Vestfold </div>
             </div>

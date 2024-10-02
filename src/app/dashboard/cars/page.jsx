@@ -36,6 +36,7 @@ const page = async ({ params }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      
     },
     body: JSON.stringify({ userId: tokendata?.id }),
   });
@@ -135,10 +136,19 @@ const page = async ({ params }) => {
                         {listing?.city}, {listing?.state}
                       </span>
                     </div>
+                    <div className=" flex items-center gap-3 ">
+                    <div className="  text-end py-3 ">
+                      <span className={` ${listing?.status ? "bg-green-100" : "bg-red-100"} px-5 py-2 rounded-md font-semibold `}>
+                        {
+                          listing?.status ? "Availabled" : "Unavailable"
+                        }
+                      </span>
+                    </div>
                     <div className="  text-end py-3 ">
                       <span className=" bg-yellow-100 px-5 py-2 rounded-md font-semibold ">
                         Incomplete
                       </span>
+                    </div>
                     </div>
                   </div>
 

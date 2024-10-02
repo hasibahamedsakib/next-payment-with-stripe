@@ -72,11 +72,11 @@ const HomeSearch = () => {
   };
 
   return (
-    <div className="w-full max-w-[1250px] mx-auto ">
-      <div className="w-full max-w-[600px]  ">
-        <form onSubmit={handleFormSubmit}>
+    <div className="w-full max-w-[1250px] mx-auto px-3 md:mt-0 mt-10 ">
+      <div className="w-full   ">
+        <form onSubmit={handleFormSubmit} className=" gap-3 flex items-center lg:flex-row flex-col justify-between w-full bg-white pt-10 pb-12 px-4 border border-green-300 rounded-md " >
           {/* Pickup location input */}
-          <div className="">
+          <div className=" w-full flex-1 ">
             <label
               htmlFor="pickup"
               className="block font-medium text-gray-800 pl-4 text-lg"
@@ -90,7 +90,7 @@ const HomeSearch = () => {
                 value={pickupAddress}
                 onChange={handlePickupInputChange}
                 placeholder={`Enter pickup location`}
-                className="mt-1 block text-base w-full border-0 border-gray-300 rounded-full shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-6 py-4 outline-none font-semibold text-gray-600 capitalize"
+                className="mt-1 block text-base w-full border hover:border-green-500 border-gray-300 rounded-md shadow-sm ring-green-200 focus:ring-green-500 pl-3 pr-10 py-3 outline-none font-semibold text-gray-600 capitalize"
               />
               {/* Clear icon */}
               {pickupAddress && (
@@ -120,8 +120,8 @@ const HomeSearch = () => {
           </div>
 
           {/* Start Date and Time */}
-          <div className="mt-4 flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex-1">
+          {/* <div className=" flex items-center justify-between gap-4"> */}
+            <div className="flex-1 w-full ">
               <label
                 htmlFor="dates"
                 className="block font-medium text-gray-800 pl-4 text-lg"
@@ -134,12 +134,12 @@ const HomeSearch = () => {
                 id="dates"
                 onChange={(e) => setStartDateAndTime(e.target.value)}
                 placeholder="Start Date - End Date"
-                className="mt-1 placeholder:text-green-500 block w-full border-0 border-gray-300 rounded-full shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-6 py-4 outline-none font-semibold text-gray-600 "
+                className="mt-1 placeholder:text-green-500 block w-full border hover:border-green-500 border-gray-300 rounded-md shadow-sm ring-green-200 focus:ring-green-500 px-3 py-3 outline-none font-semibold text-gray-600 "
               />
             </div>
 
             {/* End Date and Time */}
-            <div className="flex-1">
+            <div className="md:flex-1 w-full ">
               <label
                 htmlFor="dates"
                 className="block font-medium text-gray-800 pl-4 text-lg"
@@ -152,19 +152,19 @@ const HomeSearch = () => {
                 id="dates"
                 onChange={(e) => setEndDateAndTime(e.target.value)}
                 placeholder="Start Date - End Date"
-                className="mt-1 placeholder:text-green-500 block w-full border-0 border-gray-300 rounded-full shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-6 py-4 outline-none font-semibold text-gray-600 "
+                className="mt-1 placeholder:text-green-500 block w-full border hover:border-green-500 border-gray-300 rounded-md shadow-sm ring-green-200 focus:ring-green-500 px-3 py-3 outline-none font-semibold text-gray-600 "
               />
             </div>
-          </div>
+          {/* </div> */}
 
           {/* Search Button */}
-          <div className="mt-5">
+          <div className="flex md:w-auto w-full ">
             <button
               type="submit"
-              className="flex outline-none items-center gap-2 justify-center w-full px-2 py-4 border border-transparent text-sm font-medium rounded-xl shadow-sm text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-offset-2 focus:ring-green-700 transition-all duration-300"
+              className="flex mt-7 outline-none items-center gap-2 justify-center w-full px-8 py-3 border text-base border-transparent font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-offset-2 focus:ring-green-700 transition-all duration-300"
             >
               <FaSearch />
-              Søk
+              <span>Søk</span>
             </button>
           </div>
         </form>

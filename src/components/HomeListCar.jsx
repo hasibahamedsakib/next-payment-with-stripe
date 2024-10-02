@@ -29,7 +29,7 @@ const HomeListCar = () => {
           </div>
         </div>
         <div className=" flex-1 md:order-2 order-1 ">
-          <Image src={CarListImg} alt="Home Listing car image" className=" w-full h-full object-cover rounded-lg " placeholder="blur" priority={false} />
+          <Image src={CarListImg} alt="Home Listing car image" loading="lazy" className=" w-full h-full object-cover rounded-lg " placeholder="blur" priority={false} />
         </div>
         </div>
       </div>

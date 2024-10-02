@@ -86,7 +86,7 @@ const page = async ({ params }) => {
               <span>Number plate: {listing?.plateNumber}</span>
             </div>
 
-            <CarCalendar car={car} listingId={listing?._id} />
+            <CarCalendar car={car} listingId={listing?._id} listing={listing} />
         
       </div>
     </div>

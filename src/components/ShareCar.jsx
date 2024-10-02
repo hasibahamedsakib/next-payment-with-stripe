@@ -8,7 +8,7 @@ const ShareCar = () => {
   return (
     <div className=' flex px-3 md:flex-row flex-col gap-4 '>
         <div className=' flex-1 '>
-            <Image src={rentCarImg} alt='Key Exchange Image' className=' w-full h-full object-cover rounded-lg ' />
+            <Image src={rentCarImg} alt='Key Exchange Image' loading='lazy' className=' w-full h-full object-cover rounded-lg ' />
         </div>
         <div className=' flex-1 flex flex-col justify-between h-full gap-3 '>
             <div className=' mb-6 '>

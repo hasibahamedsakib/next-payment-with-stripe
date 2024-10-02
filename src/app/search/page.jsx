@@ -56,17 +56,17 @@ const SearchPage = () => {
     fetchListings();
   }, [location]);
   return (
-    <section className="max-w-[1250px] mx-auto px-3 py-6">
+    <section className="max-w-[1250px] min-h-[90vh] mx-auto px-3 py-6">
       {/* search box header */}
       <header className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Vehicle Listings</h1>
+        <h1 className="text-2xl font-semibold">Vehicle Listings</h1>
         <div className="flex space-x-2">
           <input
             type="text"
             placeholder="Search..."
-            className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-6 py-2 outline-none font-semibold text-gray-600  w-[390px]"
+            className="border border-gray-300 rounded shadow-sm hover:border-green-500 px-3 py-2 outline-none font-semibold text-gray-600 w-[390px]"
           />
-          <button className="bg-green-500 hover:bg-green-700 transition-all duration-300 text-white rounded px-4 py-2">
+          <button className="bg-green-500 hover:bg-green-700 transition-all duration-300 text-white rounded px-8 py-2">
             Search
           </button>
         </div>
@@ -79,17 +79,17 @@ const SearchPage = () => {
           </span>
         </div>
         <div className="flex space-x-4">
-          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
+          <select className="border hover:border-green-500 border-gray-300 rounded shadow-sm  px-3 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Total price</option>
             <option>Lowest to Highest</option>
             <option>Highest to Lowest</option>
           </select>
-          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
+          <select className="border hover:border-green-500 border-gray-300 rounded shadow-sm  px-3 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Vehicle type</option>
             <option>Car</option>
             <option>Truck</option>
           </select>
-          <select className="border-0 border-gray-300 rounded shadow-sm ring-2 ring-green-200 focus:ring-green-500 px-2 py-2 outline-none font-semibold text-gray-600 capitalize ">
+          <select className="border hover:border-green-500 border-gray-300 rounded shadow-sm  px-3 py-2 outline-none font-semibold text-gray-600 capitalize ">
             <option>Pickup method</option>
             <option>Contactless</option>
             <option>In-person</option>
@@ -149,7 +149,7 @@ const SearchPage = () => {
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13184923.40045496!2d4.763220016153098!3d62.90059680047999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x45d3d75bc58c2b49%3A0x1b5cbf7edbd02a8f!2sNorway!5e0!3m2!1sen!2sus!4v1696490000000!5m2!1sen!2sus"
             width="100%"
-            height="100%"
+            height="400px"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
