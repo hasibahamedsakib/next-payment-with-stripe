@@ -90,7 +90,7 @@ const Page = () => {
 
   console.log(token);
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(formData?.city ? formData?.city : "");
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState(formData?.city ? formData?.city : "");
 
@@ -99,31 +99,36 @@ const Page = () => {
 
     setQuery(searchValue);
 
-    if (searchValue.length > 2) {
+    if (searchValue.length > 1) {
       setIsOpen5(true);
       setIsOpen4(false);
       setIsOpen3(false);
       setIsOpen2(false);
       setIsOpen1(false);
-      const options = {
-        method: "GET",
-        url: `https://wft-geo-db.p.rapidapi.com/v1/geo/cities`,
-        params: { namePrefix: searchValue }, // Pass the search query as a parameter
-        headers: {
-          "X-RapidAPI-Key":
-            "e9ecc692c3msha1a81c5683deebcp16349djsnf50d21355932", // Replace with your API key
-          "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
-        },
-      };
+      // const options = {
+      //   method: "GET",
+      //   url: `https://wft-geo-db.p.rapidapi.com/v1/geo/cities`,
+      //   params: { namePrefix: searchValue },
+      //   headers: {
+      //     "X-RapidAPI-Key":
+      //       "e9ecc692c3msha1a81c5683deebcp16349djsnf50d21355932",
+      //     "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
+      //   },
+      // };
 
       try {
-        const res = await axios.request(options);
-        setCities(res.data.data); // Update the state with the fetched city data
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+            searchValue
+          )}&format=json&addressdetails=1&limit=5&countrycodes=NO`
+        );
+        const data = await response.json();
+        setCities(data);
       } catch (error) {
         console.error("Error fetching cities:", error);
       }
     } else {
-      setCities([]); // Clear the cities if input is too short
+      setCities([]);
       setIsOpen5(false);
     }
   };
@@ -158,6 +163,13 @@ const Page = () => {
     fetchCarModels();
   }, []);
 
+  const handleCityChange = (e) => {
+    setQuery(city?.name);
+    updateFormData("city", e.target.textContent);
+    setCity(e.target.textContent);
+    setIsOpen5(false);
+  };
+
   // const [token, setToken] = useState(null);
 
   // useEffect(() => {
@@ -172,7 +184,7 @@ const Page = () => {
   // updateFormData('carName', "lambo")
 
   console.log(formData);
-  console.log("qu", query);
+  // console.log("qu", query);
 
   // console.log(carModels);
 
@@ -452,7 +464,7 @@ const Page = () => {
           <div>
             <div className=" relative ">
               <input
-                defaultValue={formData?.city}
+                defaultValue={city}
                 // value={formData?.city}
                 onChange={handleInputChange}
                 type="text"
@@ -471,12 +483,7 @@ const Page = () => {
                 {cities?.map((city, idx) => (
                   <div
                     key={idx}
-                    onClick={(e) => {
-                      setQuery(e.target.textContent);
-                      updateFormData("city", e.target.textContent);
-                      setCity(e.target.textContent);
-                      setIsOpen5(false);
-                    }}
+                    onClick={handleCityChange}
                     className="px-6 py-2 text-[#fff] font-semibold hover:bg-green-400"
                   >
                     {city?.name}
