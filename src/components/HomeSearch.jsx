@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useRouter } from "next/navigation"; // Import useRouter
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -74,12 +73,15 @@ const HomeSearch = () => {
   return (
     <div className="w-full max-w-[1250px] mx-auto px-3 md:mt-0 mt-10 ">
       <div className="w-full   ">
-        <form onSubmit={handleFormSubmit} className=" gap-3 flex items-center lg:flex-row flex-col justify-between w-full bg-white pt-10 pb-12 px-4 border border-green-300 rounded-md " >
+        <form
+          onSubmit={handleFormSubmit}
+          className=" gap-3 flex items-center lg:flex-row flex-col justify-between w-full bg-white pt-10 pb-12 px-4 border border-green-300 rounded-md "
+        >
           {/* Pickup location input */}
           <div className=" w-full flex-1 ">
             <label
               htmlFor="pickup"
-              className="block font-medium text-gray-800 pl-4 text-lg"
+              className="block font-medium text-gray-800 ml-1 text-lg"
             >
               Hent:
             </label>
@@ -121,40 +123,40 @@ const HomeSearch = () => {
 
           {/* Start Date and Time */}
           {/* <div className=" flex items-center justify-between gap-4"> */}
-            <div className="flex-1 w-full ">
-              <label
-                htmlFor="dates"
-                className="block font-medium text-gray-800 pl-4 text-lg"
-              >
-                Dato:
-              </label>
-              <input
-                required
-                type="datetime-local"
-                id="dates"
-                onChange={(e) => setStartDateAndTime(e.target.value)}
-                placeholder="Start Date - End Date"
-                className="mt-1 placeholder:text-green-500 block w-full border hover:border-green-500 border-gray-300 rounded-md shadow-sm ring-green-200 focus:ring-green-500 px-3 py-3 outline-none font-semibold text-gray-600 "
-              />
-            </div>
+          <div className="flex-1 w-full ">
+            <label
+              htmlFor="dates"
+              className="block font-medium text-gray-800 ml-1 text-lg"
+            >
+              Dato:
+            </label>
+            <input
+              required
+              type="datetime-local"
+              id="dates"
+              onChange={(e) => setStartDateAndTime(e.target.value)}
+              placeholder="Start Date - End Date"
+              className="mt-1 placeholder:text-green-500 block w-full border hover:border-green-500 border-gray-300 rounded-md shadow-sm ring-green-200 focus:ring-green-500 px-3 py-3 outline-none font-semibold text-gray-600 "
+            />
+          </div>
 
-            {/* End Date and Time */}
-            <div className="md:flex-1 w-full ">
-              <label
-                htmlFor="dates"
-                className="block font-medium text-gray-800 pl-4 text-lg"
-              >
-                Lever:
-              </label>
-              <input
-                required
-                type="datetime-local"
-                id="dates"
-                onChange={(e) => setEndDateAndTime(e.target.value)}
-                placeholder="Start Date - End Date"
-                className="mt-1 placeholder:text-green-500 block w-full border hover:border-green-500 border-gray-300 rounded-md shadow-sm ring-green-200 focus:ring-green-500 px-3 py-3 outline-none font-semibold text-gray-600 "
-              />
-            </div>
+          {/* End Date and Time */}
+          <div className="md:flex-1 w-full ">
+            <label
+              htmlFor="dates"
+              className="block font-medium text-gray-800 ml-1 text-lg"
+            >
+              Lever:
+            </label>
+            <input
+              required
+              type="datetime-local"
+              id="dates"
+              onChange={(e) => setEndDateAndTime(e.target.value)}
+              placeholder="Start Date - End Date"
+              className="mt-1 placeholder:text-green-500 block w-full border hover:border-green-500 border-gray-300 rounded-md shadow-sm ring-green-200 focus:ring-green-500 px-3 py-3 outline-none font-semibold text-gray-600 "
+            />
+          </div>
           {/* </div> */}
 
           {/* Search Button */}
