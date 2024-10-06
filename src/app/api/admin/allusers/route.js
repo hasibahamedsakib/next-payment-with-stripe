@@ -14,7 +14,7 @@ export async function GET(req) {
       { status: 200 }
     );
 
-    res.headers.set("Access-Control-Allow-Origin", "http://localhost:5173");
+    res.headers.set("Access-Control-Allow-Origin", process.env.ADMIN_PANEL_URL);
     res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.headers.set("Access-Control-Allow-Headers", "Content-Type");
 

@@ -17,7 +17,7 @@ export async function POST(req) {
         { success: false, message: "User ID is required" },
         { status: 400 }
       );
-      res.headers.set("Access-Control-Allow-Origin", "http://localhost:5173");
+      res.headers.set("Access-Control-Allow-Origin", process.env.ADMIN_PANEL_URL);
       res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
       res.headers.set("Access-Control-Allow-Headers", "Content-Type");
       return res;
@@ -31,7 +31,7 @@ export async function POST(req) {
         { success: false, message: "User not found" },
         { status: 404 }
       );
-      res.headers.set("Access-Control-Allow-Origin", "http://localhost:5173");
+      res.headers.set("Access-Control-Allow-Origin", process.env.ADMIN_PANEL_URL);
       res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
       res.headers.set("Access-Control-Allow-Headers", "Content-Type");
       return res;
@@ -42,7 +42,7 @@ export async function POST(req) {
       { success: true, message: "User deleted successfully" },
       { status: 200 }
     );
-    res.headers.set("Access-Control-Allow-Origin", "http://localhost:5173");
+    res.headers.set("Access-Control-Allow-Origin", process.env.ADMIN_PANEL_URL);
     res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.headers.set("Access-Control-Allow-Headers", "Content-Type");
     return res;
@@ -53,7 +53,7 @@ export async function POST(req) {
       { success: false, message: "Server error" },
       { status: 500 }
     );
-    res.headers.set("Access-Control-Allow-Origin", "http://localhost:5173");
+    res.headers.set("Access-Control-Allow-Origin", process.env.ADMIN_PANEL_URL);
     res.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.headers.set("Access-Control-Allow-Headers", "Content-Type");
     return res;
@@ -64,7 +64,7 @@ export async function OPTIONS() {
   return new Response("OK", {
     status: 200,
     headers: {
-      "Access-Control-Allow-Origin": "http://localhost:5173",
+      "Access-Control-Allow-Origin": process.env.ADMIN_PANEL_URL,
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     },
