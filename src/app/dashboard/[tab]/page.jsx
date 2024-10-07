@@ -57,9 +57,9 @@ const Page = ({params}) => {
         {
             tab === 'payments' && <Payments />
         }
-        {
+        {/* {
             tab === 'account' && <Account params={params} />
-        }
+        } */}
       </div>
 
     </div>

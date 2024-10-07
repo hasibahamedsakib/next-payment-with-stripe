@@ -5,22 +5,35 @@ import { getTokenData } from "@/utils/getTokenData";
 
 connectDB();
 
-export async function GET(req) {
+export async function POST(req) {
     try {
         
-        const userId = getTokenData(req)
+        // const userId = getTokenData(req)
         // console.log(userId);
+
+        const reqBody = await req.json()
+
+        const {userId} = reqBody
+
+        console.log(userId);
+        
         
 
         const user = await User.findOne({ _id: userId }).select("-password")
 
         if(!user){
             return NextResponse.json({
-                message: "Invalid Token",
+                message: "user not foound",
                 success: false
+            },{
+                status: 404
             })
         }
         // console.log(user);
+        // console.log("user:");
+        
+        // console.log(user);
+        
         
 
         return NextResponse.json({

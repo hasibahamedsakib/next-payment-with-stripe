@@ -2,6 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { FaCheck } from "react-icons/fa6";
 import { MdCameraEnhance } from "react-icons/md";
+import { IoMdInformationCircleOutline } from "react-icons/io";
+import { CgUnavailable } from "react-icons/cg";
+import { MdOutlinePayment } from "react-icons/md";
+import PublishListingButton from "@/dashboardComponents/PublishListingButton";
+
+
+
 
 const page = async ({ params }) => {
   const { tab, car } = params;
@@ -103,31 +110,35 @@ const page = async ({ params }) => {
 
               <div className=" flex md:flex-row flex-col md:border rounded-md  ">
                 <div className=" flex-1  flex flex-col ">
-                  <div className=" py-6 border-b hover:bg-green-500/10  px-4 flex items-center gap-2 ">
-                    <FaCheck className=" text-green-500 p-1 text-3xl rounded-full bg-green-500/10 " />
-
+                  <div className=" py-6 border-b hover:bg-green-500/10 cursor-pointer  px-4 flex items-center gap-2 ">
+                    {
+                      listing?.image ? <FaCheck className=" text-green-500 p-1 text-3xl rounded-full bg-green-500/10 " /> : <IoMdInformationCircleOutline className=" bg-gray-500/10 p-1 rounded-full text-4xl  "/>
+                    }
+                    
                     <span className=" font-semibold ">Add car information</span>
                   </div>
                   <Link
                     href={`/dashboard/cars/${listing?.plateNumber}/uploadimage`}
                     className=" py-6 border-b hover:bg-green-500/10 px-4 flex items-center gap-2 "
                   >
-                    <MdCameraEnhance className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
+                    {
+                      listing?.image1 ? <FaCheck className=" text-green-500 p-1 text-3xl rounded-full bg-green-500/10 " /> : <MdCameraEnhance className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
+                    }
                     <span className=" font-semibold ">Add Photos</span>
                   </Link>
                   <Link
                   href={`/dashboard/cars/${listing?.plateNumber}/calender`}
                   className=" py-6 border-b hover:bg-green-500/10 px-4 flex items-center gap-2 ">
-                    <FaCheck className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
+                    <CgUnavailable className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
                     <span className=" font-semibold ">
                       Update your calender
                     </span>
                   </Link>
                   <Link
-                    href={"/dashboard/account"}
+                    href={"/dashboard/account/payment-setting"}
                     className=" py-6 md:border-none hover:bg-green-500/10 border-b px-4 flex items-center gap-2 "
                   >
-                    <FaCheck className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
+                    <MdOutlinePayment className=" text-gray-700 p-1 text-3xl rounded-full bg-gray-500/10 " />
                     <span className=" font-semibold ">
                       Update your Billing information
                     </span>
@@ -138,9 +149,7 @@ const page = async ({ params }) => {
                     <p className=" text-[1.2rem] font-light text-gray-500 ">
                       Make sure all steps are complete
                     </p>
-                    <button className=" w-full bg-green-500 py-2 rounded-md text-[#fff] text-base font-semibold cursor-not-allowed ">
-                      Publish listing
-                    </button>
+                    <PublishListingButton listingId = {listing?._id} listing={listing} />
                   </div>
                   <div className=" border flex-1 flex items-end justify-center px-3 ">
                     <button className=" w-full bg-red-500/80 py-2 rounded-md text-[#fff] text-base font-semibold ">

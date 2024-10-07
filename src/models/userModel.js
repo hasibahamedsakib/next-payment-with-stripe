@@ -81,6 +81,10 @@ const userSchema = new mongoose.Schema({
     aboutMe:{
         type: String
     },
+    role:{
+        type: String,
+        default: "USER"
+    },
     forgotPasswordToken: String,
     forgotPasswordTokenExpiry: String,
     verifyToken: String,

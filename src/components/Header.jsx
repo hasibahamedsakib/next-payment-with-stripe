@@ -11,22 +11,36 @@ import axios from "axios";
 import Profiles from "./Profiles";
 import { useSession } from "next-auth/react";
 import { useFormContext } from "@/context/FormContext";
+import { useUserDataContext } from "@/context/UserDataContext";
 
 
 
-const Header = ({user, userData}) => {
-  // console.log(userData.id);
+const Header = ({user, tokenData, data}) => {
+  // console.log("tokenData");
+  
+  // console.log(data);
+
+  const { userData, updateUserData } = useUserDataContext();
+
+  useEffect(()=> {
+    updateUserData(data)
+  }, [])
+
+  // console.log(userData);
+  
+
+  
 
   const { formData, updateFormData } = useFormContext();
   console.log(formData);
   useEffect(()=> {
      
-    if(userData?.id){
-      updateFormData("userId", userData?.id )
-      localStorage.setItem('id', userData?.id)
+    if(tokenData?.id){
+      updateFormData("userId", tokenData?.id )
+      localStorage.setItem('id', tokenData?.id)
     }
-  }, [userData])
-  console.log("id",userData?.id)
+  }, [tokenData])
+  console.log("id",tokenData?.id)
   
   
  
@@ -98,7 +112,7 @@ const Header = ({user, userData}) => {
       </div>
         {
           user ? <div className=" ">
-            <Profiles img={userData?.profileImg} />
+            <Profiles img={tokenData?.profileImg} />
           </div> : <>
           <div className=" hidden md:flex items-center gap-2 lg:gap-5 ">
           <Link href={'/auth/signin'} className=" bg-transparent px-5 py-2 font-semibold border text-[#000] hover:text-[#fff] border-green-600 hover:bg-green-500 transition-colors duration-300 ease-in-out rounded-md shadow-md ">
