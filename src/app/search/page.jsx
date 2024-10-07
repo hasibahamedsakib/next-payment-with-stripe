@@ -1,10 +1,11 @@
 "use client";
-import Image from "next/image";
-import BlogImg1 from "@/public/images/BlogImg2.webp";
-
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import CheckoutModal from "@/components/CheckoutModal";
 
 const SearchPage = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -100,45 +101,67 @@ const SearchPage = () => {
         <div className="col-span-2 w-full space-y-3">
           {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"> */}
           {/* Vehicle Card 1 */}
+
           {isLoading
             ? "loading... please wait"
             : findListedCars?.length >= 1
             ? findListedCars?.map((item, index) => {
                 return (
-                  <div
-                    key={index}
-                    className=" flex items-start justify-between gap-4 border rounded shadow-sm"
-                  >
-                    <Image
-                      src={item?.image}
-                      alt="Dodge Grand Caravan"
-                      className="w-[300px] h-48 object-cover rounded-tl-md rounded-bl-md"
-                      loading="lazy"
-                      width={300}
-                      height={192}
-                      draggable={false}
-                    />
-                    <div className="py-2 pr-5">
-                      <h2 className="text-lg font-semibold text-gray-700 leading-7 pt-2">
-                        {item?.carName}_{item?.carModel}{" "}
-                        {item?.countryOfRegistation} - {item?.yearOfRegistation}
-                        {/* Dodge Grand Caravan American Value Package 2014 */}
-                      </h2>
-                      <p className="text-gray-600 leading-7">
-                        Rating: 4.09 (348 reviews)
-                      </p>
-                      <div className="text-end">
-                        <p className="text-xl font-bold">
-                          $ {item?.perDayPrice}
+                  <div key={index}>
+                    {openModal && (
+                      <CheckoutModal
+                        openModal={openModal}
+                        setOpenModal={setOpenModal}
+                        item={item}
+                      />
+                    )}
+                    <div className=" flex items-start justify-between gap-4 border rounded shadow-sm">
+                      <Image
+                        src={item?.image}
+                        alt="Dodge Grand Caravan"
+                        className="w-[300px] h-48 object-cover rounded-tl-md rounded-bl-md"
+                        loading="lazy"
+                        width={300}
+                        height={192}
+                        draggable={false}
+                      />
+                      <div className="py-2 pr-5">
+                        <h2 className="text-lg font-semibold text-gray-700 leading-7 pt-2">
+                          {item?.carName}_{item?.carModel}{" "}
+                          {item?.countryOfRegistation} -{" "}
+                          {item?.yearOfRegistation}
+                          {/* Dodge Grand Caravan American Value Package 2014 */}
+                        </h2>
+                        <p className="text-gray-600 leading-7">
+                          Rating: 4.09 (348 reviews)
                         </p>
-                        {/* <p>For 23 days, 1 hr, 30 min</p> */}
+                        <div className="text-end">
+                          <p className=" font-bold">
+                            Price/H{" "}
+                            <span className="text-xl font-bold">
+                              {" "}
+                              : ${item?.perDayPrice}
+                            </span>
+                          </p>
+                          {/* <p>For 23 days, 1 hr, 30 min</p> */}
+                          <button
+                            onClick={() => {
+                              setOpenModal(true);
+                            }}
+                            className="bg-green-500 hover:bg-green-700 text-sm transition-all duration-300 text-white rounded px-2 py-1 mt-2"
+                          >
+                            See Details
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 );
               })
             : "Car Not found at this location"}
-
+          {/* {openModal && (
+            <CheckoutModal openModal={openModal} setOpenModal={setOpenModal} carInfo={item} />
+          )} */}
           {/* Add more vehicle cards as needed */}
           {/* </div> */}
         </div>
