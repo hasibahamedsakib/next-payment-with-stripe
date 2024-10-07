@@ -130,7 +130,7 @@ const Page = () => {
         <div className=" relative w-full  ">
           <div className=" flex flex-col gap-1 ">
             <label className=" ml-2 text-black font-semibold " htmlFor="">
-              Plate Number
+              Number Plate
             </label>
             <input
               type="text"

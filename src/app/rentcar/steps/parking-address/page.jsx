@@ -34,23 +34,25 @@ const Page = () => {
   const [suggestions, setSuggestions] = useState([]);
 
   const [isOpen1, setIsOpen1] = useState(false);
-  const [selectedValue1, setSelectedValue1] = useState("Toyota");
+  const [selectedValue1, setSelectedValue1] = useState("");
   const options1 = ["Tesla", "Tata", "Suzuki"];
 
   const handleInputChange = async (e) => {
     updateFormData("meetingPoint", "")
-    const query = e.target.value;
-    query.length < 3 ? setIsOpen1(false) : null;
-    setAddress(query);
+    
+    const searchValue = e.target.value;
+    setSelectedValue1(searchValue)
+    searchValue.length < 2 ? setIsOpen1(false) : null;
+    setAddress(searchValue);
 
-    if (query.length > 2) {
+    if (searchValue.length > 1) {
       try {
-        const response = await axios.get(
+        const response = await fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-            query
-          )}&format=json&addressdetails=1&limit=5`
+            searchValue
+          )}&format=json&addressdetails=1&limit=5&countrycodes=NO`
         );
-        const data = response.data;
+        const data = await response.json();
 
         if (data.length > 0) {
           setSuggestions(data); // Update suggestions based on response data
@@ -66,11 +68,12 @@ const Page = () => {
       setSuggestions([]);
     }
   };
+console.log('su', isOpen1);
 
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async () => {
-    if(!address){
+    if(!formData?.meetingPoint){
       toast.error("Meeting point is required")
       return
     }
@@ -149,7 +152,7 @@ const Page = () => {
             </label>
             <input
               type="text"
-              defaultValue={formData?.meetingPoint}
+              value={ selectedValue1 || formData?.meetingPoint}
               // value={address}
               onChange={handleInputChange}
               placeholder="Enter address"
@@ -169,6 +172,7 @@ const Page = () => {
                   onClick={(e) => {
                     setAddress(e.target.textContent);
                     updateFormData("meetingPoint", e.target.textContent);
+                    setSelectedValue1(suggestion?.display_name)
                     setIsOpen1(false);
                   }}
                   className="px-6 py-2 text-[#fff] font-semibold hover:bg-green-400"
