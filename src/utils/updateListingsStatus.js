@@ -26,10 +26,10 @@ async function updateListingStatuses() {
 
         if (now.isBetween(start, end, null, '[]')) {
           console.log(`Updating status to false for listing ${listing._id}`);
-          listing.status = false; 
+          listing.available = false; 
         } else {
           console.log(`Updating status to true for listing ${listing._id}`);
-          listing.status = true;  
+          listing.available = true;  
         }
 
         await listing.save();

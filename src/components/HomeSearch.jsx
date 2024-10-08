@@ -67,6 +67,7 @@ const HomeSearch = () => {
       );
     } else {
       toast.error("Please fill in all fields.");
+      router.push(`/search`);
     }
   };
 
@@ -87,7 +88,7 @@ const HomeSearch = () => {
             </label>
             <div className="relative">
               <input
-                required
+                // required
                 type="text"
                 value={pickupAddress}
                 onChange={handlePickupInputChange}
@@ -131,7 +132,7 @@ const HomeSearch = () => {
               Dato:
             </label>
             <input
-              required
+              // required
               type="datetime-local"
               id="dates"
               onChange={(e) => setStartDateAndTime(e.target.value)}
@@ -149,7 +150,7 @@ const HomeSearch = () => {
               Lever:
             </label>
             <input
-              required
+              // required
               type="datetime-local"
               id="dates"
               onChange={(e) => setEndDateAndTime(e.target.value)}

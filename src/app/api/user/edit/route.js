@@ -58,7 +58,7 @@ export async function POST(req) {
       ssnNumber
     } = reqBody;
 
-    console.log(password, userId);
+    // console.log(password, userId);
 
     let updateData = {};
 
@@ -67,7 +67,7 @@ export async function POST(req) {
 
     if (password) {
       const user = await User.findOne({ _id: userId });
-      console.log(`user: ${user}`);
+      // console.log(`user: ${user}`);
       if (!user) {
         return NextResponse.json(
           {

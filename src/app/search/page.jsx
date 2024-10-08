@@ -30,9 +30,9 @@ const SearchPage = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-        const response = await fetch(`${apiUrl}/api/user/listing/getallcars`, {
+        const response = await fetch(`/api/user/listing/getallcars`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const SearchPage = () => {
 
         const data = await response.json();
         setListings(data.allListedCars);
-        console.log("All list", data);
+        console.log(data);
 
         setIsLoading(false);
       } catch (err) {
@@ -63,11 +63,15 @@ const SearchPage = () => {
         <h1 className="text-2xl font-semibold">Vehicle Listings</h1>
         <div className="flex space-x-2">
           <input
+            onBlur={(e) => setLocation(e.target.value)}
             type="text"
             placeholder="Search..."
             className="border border-gray-300 rounded shadow-sm hover:border-green-500 px-3 py-2 outline-none font-semibold text-gray-600 w-[390px]"
           />
-          <button className="bg-green-500 hover:bg-green-700 transition-all duration-300 text-white rounded px-8 py-2">
+          <button
+            type="submit"
+            className="bg-green-500 hover:bg-green-700 transition-all duration-300 text-white rounded px-8 py-2"
+          >
             Search
           </button>
         </div>

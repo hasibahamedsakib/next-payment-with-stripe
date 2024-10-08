@@ -39,6 +39,7 @@ const page = async ({ params }) => {
       
     },
     body: JSON.stringify({ userId: tokendata?.id }),
+    cache: 'no-store'
   });
 
   if (!res.ok) {
@@ -47,7 +48,7 @@ const page = async ({ params }) => {
 
   const data = await res.json();
   const listings = data?.data;
-  // console.log("car Data",listings);
+  console.log("car Data",listings);
   // console.log(res)
   
 
@@ -138,16 +139,20 @@ const page = async ({ params }) => {
                     </div>
                     <div className=" flex items-center gap-3 ">
                     <div className="  text-end py-3 ">
-                      <span className={` ${listing?.status ? "bg-green-100" : "bg-red-100"} px-5 py-2 rounded-md font-semibold `}>
+                      <span className={` ${listing?.available ? "bg-green-100" : "bg-red-100"} px-5 py-2 rounded-md font-semibold `}>
                         {
-                          listing?.status ? "Availabled" : "Unavailable"
+                          listing?.available ? "Availabled" : "Unavailable"
                         }
                       </span>
                     </div>
                     <div className="  text-end py-3 ">
-                      <span className=" bg-yellow-100 px-5 py-2 rounded-md font-semibold ">
-                        Incomplete
+                      {
+                        listing?.status ? <span className=" bg-green-100 px-5 py-2 rounded-md font-semibold ">
+                        Completed
+                      </span> : <span className=" bg-yellow-100 px-5 py-2 rounded-md font-semibold ">
+                        Incompleted
                       </span>
+                      }
                     </div>
                     </div>
                   </div>

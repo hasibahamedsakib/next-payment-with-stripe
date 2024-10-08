@@ -32,7 +32,7 @@ export async function POST(req) {
       perDayPrice
     } = reqBody;
 
-    console.log("price",perDayPrice);
+    // console.log("price",perDayPrice);
     
 
 

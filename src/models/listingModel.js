@@ -107,6 +107,10 @@ const listingSchema = new mongoose.Schema({
     },
     status: {
         type: Boolean,
+        default: false
+    },
+    available: {
+        type: Boolean,
         default: true
     },
     unavailability: {

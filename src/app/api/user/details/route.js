@@ -5,35 +5,48 @@ import { getTokenData } from "@/utils/getTokenData";
 
 connectDB();
 
-export async function GET(req) {
-    try {
-        
-        const userId = getTokenData(req)
-        // console.log(userId);
-        
+export async function POST(req) {
+  try {
+    // const userId = getTokenData(req)
+    // console.log(userId);
 
-        const user = await User.findOne({ _id: userId }).select("-password")
+    const reqBody = await req.json();
 
-        if(!user){
-            return NextResponse.json({
-                message: "Invalid Token",
-                success: false
-            })
+    const { userId } = reqBody;
+
+    // console.log(userId);
+
+    const user = await User.findOne({ _id: userId }).select("-password");
+
+    if (!user) {
+      return NextResponse.json(
+        {
+          message: "user not foound",
+          success: false,
+        },
+        {
+          status: 404,
         }
-        // console.log(user);
-        
-
-        return NextResponse.json({
-            message: "User found successfully",
-            success: true,
-            data: user
-        })
-
-    } catch (error) {
-        return NextResponse.json({
-            error: error.message
-        },{
-            status:500
-        })
+      );
     }
+    // console.log(user);
+    // console.log("user:");
+
+    // console.log(user);
+
+    return NextResponse.json({
+      message: "User found successfully",
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: error.message,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 }
