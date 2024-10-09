@@ -27,7 +27,6 @@ export const config = {
     "/auth/signin",
     // '/verifyemail',
     "/profile",
-    "/payment",
     "/dashboard/:path*",
   ],
 };

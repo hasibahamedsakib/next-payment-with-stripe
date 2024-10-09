@@ -3,8 +3,6 @@ import User from "@/models/userModel";
 import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 connectDB();
 
@@ -35,7 +33,7 @@ export async function POST(req) {
       password: hashedPassword,
     });
 
-    // await newUser.save();
+    await newUser.save();
 
     const tokenData = {
       id: newUser._id,
@@ -46,15 +44,6 @@ export async function POST(req) {
     const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {
       expiresIn: "10d",
     });
-
-    //! create a stripe account for user
-
-    const account = await stripe.accounts.create({
-      type: "express",
-      country: "US",
-      email: email,
-    });
-    console.log(account);
 
     // await sendEmail({ email, emailType: 'VERIFY', userId: savedUser._id });
 
